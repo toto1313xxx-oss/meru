@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>メルカリ撮影・出品 現場完全マニュアル</title>
+  <title>メルカリ現場撮影・出品 完全図解マニュアル</title>
   <style>
     :root {
       --primary: #1d4ed8;
@@ -12,6 +12,7 @@
       --danger-soft: #fef2f2;
       --warning: #d97706;
       --warning-soft: #fffbeb;
+      --success: #16a34a;
       --dark: #0f172a;
       --text: #334155;
       --text-muted: #64748b;
@@ -38,10 +39,9 @@
       z-index: 50;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
-    header h1 { font-size: 1.1rem; font-weight: 800; }
-    header p { font-size: 0.72rem; color: #94a3b8; margin-top: 2px; }
+    header h1 { font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    header p { font-size: 0.72rem; color: #94a3b8; margin-top: 3px; }
 
-    /* ナビゲーションバー */
     .nav-tabs {
       display: flex;
       gap: 6px;
@@ -65,9 +65,8 @@
       white-space: nowrap;
       border: 1px solid var(--border);
     }
-    .nav-tabs a:active { background: var(--primary); color: #fff; }
 
-    .container { padding: 14px; max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+    .container { padding: 14px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 
     .card {
       background: var(--card-bg);
@@ -85,8 +84,9 @@
       align-items: center;
       gap: 8px;
     }
-    .badge-primary { background: var(--primary-soft); color: var(--primary); font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; }
-    .badge-danger { background: var(--danger-soft); color: var(--danger); font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; }
+    .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
+    .badge-primary { background: var(--primary-soft); color: var(--primary); }
+    .badge-danger { background: var(--danger-soft); color: var(--danger); }
 
     /* 警告バナー */
     .banner-danger {
@@ -99,110 +99,92 @@
     .banner-danger strong { color: var(--danger); font-size: 0.92rem; display: block; margin-bottom: 4px; }
     .banner-danger p { font-size: 0.8rem; color: #991b1b; }
 
-    /* 札の比較図解 */
-    .tag-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-    .tag-box {
+    /* 図解ボックス共通 */
+    .diagram-container {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .diagram-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .diagram-svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* 札の図解比較 */
+    .tag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .tag-item {
+      background: #fffdf8;
       border: 2px dashed #94a3b8;
       border-radius: 8px;
       padding: 10px;
-      background: #fffdfa;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 190px;
+      min-height: 200px;
     }
-    .tag-star { position: absolute; top: 4px; right: 8px; color: var(--warning); font-size: 1.3rem; }
-    .tag-content-demo { font-size: 0.75rem; color: #334155; font-weight: 700; line-height: 1.4; }
-    .tag-write-area { margin-top: 8px; padding: 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; }
-    .tag-write-area.front-write { background: #eff6ff; border: 1px solid #93c5fd; color: #1d4ed8; }
-    .tag-red-line { height: 4px; background: var(--danger); margin-top: 8px; border-radius: 2px; position: relative; }
-    .tag-red-line::after { content: "表面は赤線のみ！記入禁止"; position: absolute; top: -16px; left: 0; font-size: 0.65rem; color: var(--danger); font-weight: 800; }
-    .tag-back-note { background: #fef2f2; border: 1px dashed var(--danger); color: #991b1b; padding: 6px; border-radius: 4px; margin-top: 8px; font-size: 0.7rem; font-weight: 700; }
-    .tag-caption { text-align: center; font-weight: 800; font-size: 0.78rem; margin-top: 6px; }
-
-    /* 行き先フロー */
-    .flow-tree { display: flex; flex-direction: column; gap: 8px; }
-    .flow-node { border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; background: #fff; display: flex; gap: 10px; align-items: flex-start; }
-    .flow-node.fast-sell { border-color: var(--danger); background: #fff5f5; }
-    .flow-icon { font-size: 1.4rem; line-height: 1; }
-    .flow-body { flex: 1; }
-    .flow-title { font-size: 0.85rem; font-weight: 800; color: var(--dark); }
-    .flow-dest { display: inline-block; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; margin-top: 4px; }
-    .dest-red { background: var(--danger); color: #fff; }
-    .dest-blue { background: var(--primary); color: #fff; }
-    .dest-gray { background: #475569; color: #fff; }
-    .flow-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; }
-
-    /* 📸 撮影ジャンル別セクション */
-    .genre-card {
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 14px;
-      background: #fff;
-    }
-    .genre-card.alert-border { border-color: var(--warning); background: #fffdf7; }
-    .genre-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 6px;
-    }
-    .genre-title { font-size: 0.95rem; font-weight: 800; color: var(--dark); display: flex; align-items: center; gap: 6px; }
-
-    /* 撮影ステップ・タイムライン */
-    .shot-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin: 10px 0;
-    }
-    .shot-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      background: var(--bg);
-      padding: 7px 10px;
-      border-radius: 6px;
+    .tag-caption {
       font-size: 0.78rem;
-    }
-    .shot-badge {
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.68rem;
       font-weight: 800;
-      padding: 1px 6px;
-      border-radius: 4px;
-      flex-shrink: 0;
+      text-align: center;
+      margin-top: 6px;
     }
-    .shot-badge.top { background: var(--danger); }
-    .shot-text { font-weight: 600; color: var(--dark); flex: 1; }
-    .shot-sub { font-size: 0.72rem; color: var(--text-muted); display: block; font-weight: 400; margin-top: 1px; }
 
-    /* 重要注記ボックス */
+    /* 撮影グリッド図解 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .grid-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    /* 注記ボックス */
     .note-box {
-      background: #f1f5f9;
-      border-left: 3px solid var(--primary);
+      background: #f8fafc;
+      border-left: 3.5px solid var(--primary);
       padding: 8px 10px;
       border-radius: 0 6px 6px 0;
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       color: var(--text);
       margin-top: 8px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
     .note-box.warn {
       background: #fffbeb;
       border-left-color: var(--warning);
       color: #92400e;
     }
-    .note-box strong { font-weight: 800; }
 
     /* テーブル */
     table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin-top: 8px; }
-    th, td { border: 1px solid var(--border); padding: 8px 6px; text-align: left; }
+    th, td { border: 1px solid var(--border); padding: 7px 6px; text-align: left; }
     th { background: #f1f5f9; font-weight: 700; color: var(--dark); }
 
     /* チェックリスト */
@@ -210,7 +192,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 0;
+      padding: 9px 0;
       border-bottom: 1px dashed var(--border);
       font-size: 0.82rem;
       font-weight: 700;
@@ -222,318 +204,320 @@
 <body>
 
   <header>
-    <h1>メルカリ撮影・出品 現場完全マニュアル</h1>
-    <p>新人引き継ぎ・ジャンル別撮影ルール網羅版</p>
+    <h1>📸 メルカリ現場撮影・出品 完全図解</h1>
+    <p>新人向け・イラストで直感的に真似できる作業ガイド</p>
   </header>
 
   <nav class="nav-tabs">
-    <a href="#rules">⚠️ 厳禁ルール</a>
-    <a href="#destination">📦 行き先仕分け</a>
-    <a href="#tags">🏷️ 札の書き方</a>
-    <a href="#photo-plate">🍽️ 皿・骨董撮影</a>
-    <a href="#photo-large">🎨 大皿・平皿</a>
+    <a href="#tags">🏷️ 札の図解</a>
+    <a href="#photo-large">🎨 大皿の4分割</a>
+    <a href="#photo-flat">🍽️ 平皿・組皿</a>
     <a href="#photo-accessory">💍 アクセ・置物</a>
     <a href="#photo-western">☕ 洋食器</a>
+    <a href="#flow">📦 仕分けフロー</a>
     <a href="#check">✅ 最終チェック</a>
   </nav>
 
   <main class="container">
 
-    <!-- 1. 厳禁ルール -->
-    <section id="rules" class="card">
-      <h2 class="card-title">⚠️ 出品前の厳禁・確認ルール</h2>
-      
-      <div class="banner-danger">
-        <strong>🚫 【超厳禁】象牙という単語はメルカリNG！</strong>
-        <p>
-          ・商品名・説明文で「象牙」は絶対禁止。必ず<strong>「極上」</strong>に変換する！<br>
-          ・木箱の墨書きや商品札に書かれた「象牙」の文字も<strong>写真に写り込まないよう徹底</strong>する。
-        </p>
-      </div>
-
-      <div class="note-box warn">
-        <strong>🛑 出品・撮影ストップ基準：</strong><br>
-        ・<strong>UQ 4Gのスマホ</strong>は撮影に使用しない。<br>
-        ・<strong>3,000円以下</strong>の商品は原則出品しない。<br>
-        ・<strong>6,000円以上で符帳（タコサ等）がないもの</strong>は社長に事前確認。<br>
-        ・価格やタイトルの数字が読めない・桁が怪しい時は勝手に判断せず社長か周囲に確認。
-      </div>
-    </section>
-
-    <!-- 2. 行き先仕分け -->
-    <section id="destination" class="card">
-      <h2 class="card-title">📦 撮影後の行き先仕分け</h2>
-      
-      <div class="flow-tree">
-        <div class="flow-node fast-sell">
-          <div class="flow-icon">🚨</div>
-          <div class="flow-body">
-            <div class="flow-title">撮影後すぐに売れた！</div>
-            <span class="flow-dest dest-red">👉 1F または 3F「札待ちコーナー」へ</span>
-            <p class="flow-desc">発送用伝票・札が手元に揃うまで待機させる場所です。</p>
-          </div>
-        </div>
-
-        <div class="flow-node">
-          <div class="flow-icon">💍</div>
-          <div class="flow-body">
-            <div class="flow-title">アクセサリー類</div>
-            <span class="flow-dest dest-blue">👉 1F 撮影台の足元にある箱へ</span>
-            <p class="flow-desc">箱番号例：<code>東さ6-0209ア①</code></p>
-          </div>
-        </div>
-
-        <div class="flow-node">
-          <div class="flow-icon">📦</div>
-          <div class="flow-body">
-            <div class="flow-title">洋食器・茶道具（箱単位）</div>
-            <span class="flow-dest dest-gray">👉 3Fへ（箱ごと保管）</span>
-            <p class="flow-desc">
-              ・蓋で密閉するため<strong>プチプチを多め</strong>に入れて保護。<br>
-              ・<strong>「箱本体」と「蓋」の両方</strong>に箱番号を明記（例：<code>☆洋3 東さ6-0209</code> / <code>☆茶3</code>）。<br>
-              ※茶道具対象：茶碗、水指、建水、香合、棗、掛花入れ、茶杓、茶入れ、蓋置
-            </p>
-          </div>
-        </div>
-
-        <div class="flow-node">
-          <div class="flow-icon">🏺</div>
-          <div class="flow-body">
-            <div class="flow-title">通常商品（骨董・皿など）</div>
-            <span class="flow-dest dest-gray">👉 3Fへ</span>
-            <p class="flow-desc">
-              ・サイズ感が同じものを集めて箱入れし、箱番号の紙を貼る。<br>
-              ・大きな直し・壊れやすい物・木箱の傷みがある物は目立つように記載する。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. 商品札の書き分け -->
+    <!-- 1. 商品札の書き分け図解 -->
     <section id="tags" class="card">
-      <h2 class="card-title">🏷️ 商品札の書き分けルール</h2>
-      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
-        右上の<strong>「☆」の有無</strong>で書く場所が表裏逆になります！
+      <h2 class="card-title">🏷️ 商品札の書き分け図解 <span class="badge badge-danger">記入ミス厳禁</span></h2>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px;">
+        右上の<strong>「☆」の有無</strong>で、書く場所（表 or 裏）が真逆になります！
       </p>
 
-      <div class="tag-compare">
+      <div class="tag-grid">
+        <!-- 通常商品 -->
         <div>
-          <div class="tag-box">
-            <div class="tag-content-demo">古伊万里 皿 2枚<br>¥5,000</div>
-            <div class="tag-write-area front-write">
-              ✍️ 表面の下に記入！<br>
-              ・直径10cm 欠けあり<br>
-              ・東さ6-0209①
+          <div class="tag-item">
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 800;">古伊万里 皿 2枚<br>¥5,000</div>
+            </div>
+            <div style="background: #eff6ff; border: 1.5px solid #93c5fd; padding: 6px; border-radius: 4px; font-size: 0.7rem; color: #1d4ed8; font-weight: 800;">
+              ✍️ 表面の下に直接書く！<br>
+              直径10cm 欠けあり<br>
+              東さ6-0209①
             </div>
           </div>
-          <p class="tag-caption">【通常（3F保管）】<br><span style="color: var(--primary);">表面に直接記入</span></p>
+          <p class="tag-caption">通常品（3F保管）<br><span style="color: var(--primary);">【表面】サイズ・状態・箱番号</span></p>
         </div>
 
+        <!-- ☆付き商品 -->
         <div>
-          <div class="tag-box">
-            <div class="tag-star">★</div>
-            <div class="tag-content-demo">古伊万里 皿 2枚<br>¥5,000</div>
-            <div class="tag-red-line"></div>
-            <div class="tag-back-note">
-              ✍️ 裏面に記入！<br>
-              例: <code>東さ6-0209☆1F</code>
+          <div class="tag-item">
+            <div style="display: flex; justify-content: space-between;">
+              <div style="font-size: 0.75rem; font-weight: 800;">古伊万里 皿 2枚<br>¥5,000</div>
+              <span style="color: var(--warning); font-size: 1.2rem; line-height: 1;">★</span>
+            </div>
+            <div>
+              <!-- 赤線ビジュアル -->
+              <div style="height: 4px; background: var(--danger); border-radius: 2px; margin-bottom: 6px; position: relative;">
+                <span style="position: absolute; top: -14px; left: 0; font-size: 0.6rem; color: var(--danger); font-weight: 800;">表面に赤線を引く！</span>
+              </div>
+              <div style="background: #fef2f2; border: 1px dashed var(--danger); padding: 5px; border-radius: 4px; font-size: 0.68rem; color: #991b1b; font-weight: 800;">
+                ✍️ 表面は白紙のまま！<br>
+                <strong>裏面に書く：</strong><br>
+                東さ6-0209☆1F
+              </div>
             </div>
           </div>
-          <p class="tag-caption">【☆付き（店頭戻し）】<br><span style="color: var(--danger);">表面赤線 ＋ 裏面記入</span></p>
+          <p class="tag-caption">☆マーク付き（店頭戻し）<br><span style="color: var(--danger);">【表面】赤線のみ 【裏面】箱番号</span></p>
         </div>
       </div>
 
-      <div class="note-box" style="margin-top: 10px;">
-        <strong>📌 ☆付きの裏面記載と戻し先ルール：</strong><br>
+      <div class="note-box warn" style="margin-top: 10px;">
+        <strong>📌 ☆付きの裏面記入と展示場所：</strong><br>
         ・1F展示戻し → <code>東さ6-0209☆1F</code><br>
         ・2F展示戻し → <code>東さ6-0209☆2F</code><br>
-        ・札に「☆げ」記載 → <code>☆2F</code> と記入し、<strong>2F象牙コーナー</strong>に飾る<br>
-        ・札に「☆茶」記載 → <code>☆2F</code> と記入し、<strong>2F茶道具コーナー</strong>に飾る<br>
-        <span style="color: var(--danger); font-weight: 700;">※赤線はメルカリ出品済の目印です。引き忘れに注意！</span>
+        ・札に「☆げ」記載 → <code>☆2F</code> と記入し、<strong>2F象牙コーナー</strong>へ<br>
+        ・札に「☆茶」記載 → <code>☆2F</code> と記入し、<strong>2F茶道具コーナー</strong>へ<br>
+        ※店内の札に赤線が引いてある＝「メルカリ出品中」の合図です。引き忘れ注意！
       </div>
     </section>
 
-    <!-- 4. 皿・茶碗・骨董一般 -->
-    <section id="photo-plate" class="card">
-      <h2 class="card-title">🍽️ 皿・茶碗等の基本撮影順序 <span class="badge-primary">全ジャンルの基本</span></h2>
+    <!-- 2. 大皿の撮影図解（4分割・裏面3箇所） -->
+    <section id="photo-large" class="card">
+      <h2 class="card-title">🎨 大皿の撮影図解 <span class="badge badge-primary">皿立て・4分割・裏面3箇所</span></h2>
+      <p style="font-size: 0.8rem; color: var(--text-muted);">
+        大皿は絵柄と傷のチェック箇所が多いため、<strong>「4分割」</strong>と<strong>「裏面側面3箇所」</strong>が必須ルールです。
+      </p>
 
-      <div class="shot-steps">
-        <div class="shot-item">
-          <span class="shot-badge top">1枚目</span>
-          <div class="shot-text">トップ写真（商品の特徴が最もよくわかる写真）
-            <span class="shot-sub">★木箱、蓋裏の箱書き、布の押印があれば必ずトップに入れる！箱書きがなくても木箱の存在がわかるように撮影。</span>
+      <!-- 図解SVG：4分割と皿立て -->
+      <div class="diagram-container">
+        <div class="diagram-title">図解①：正面トップ（皿立て）と 4分割アップ</div>
+        <svg class="diagram-svg" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- 皿立ての大皿（左） -->
+          <g transform="translate(10, 10)">
+            <!-- 皿立て -->
+            <path d="M25,120 L50,50 L75,120 M35,100 L65,100" stroke="#64748b" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <!-- 大皿本体 -->
+            <ellipse cx="50" cy="70" rx="42" ry="42" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3"/>
+            <ellipse cx="50" cy="70" rx="26" ry="26" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <text x="50" y="74" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">皿立て使用</text>
+            <text x="50" y="145" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">① トップ写真</text>
+          </g>
+
+          <!-- 4分割アップ（右） -->
+          <g transform="translate(160, 10)">
+            <circle cx="70" cy="65" r="55" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+            <!-- 十字の分割線 -->
+            <line x1="70" y1="10" x2="70" y2="120" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+            <line x1="15" y1="65" x2="125" y2="65" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+            <!-- 象限番号 -->
+            <rect x="35" y="30" width="22" height="18" rx="4" fill="#dc2626"/><text x="46" y="43" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">左上</text>
+            <rect x="85" y="30" width="22" height="18" rx="4" fill="#dc2626"/><text x="96" y="43" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">右上</text>
+            <rect x="35" y="75" width="22" height="18" rx="4" fill="#dc2626"/><text x="46" y="88" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">左下</text>
+            <rect x="85" y="75" width="22" height="18" rx="4" fill="#dc2626"/><text x="96" y="88" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">右下</text>
+            <text x="70" y="145" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">② 絵柄を4分割撮影！</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 図解SVG：裏面3箇所の側面 -->
+      <div class="diagram-container">
+        <div class="diagram-title" style="color: var(--danger);">図解②：大皿の裏面は【3箇所の側面】を必ず撮影！</div>
+        <svg class="diagram-svg" viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(90, 5)">
+            <!-- 大皿裏面 -->
+            <circle cx="70" cy="65" r="55" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+            <circle cx="70" cy="65" r="28" fill="#fff" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="70" y="68" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">高台・銘</text>
+
+            <!-- 3箇所のカメラアングル -->
+            <!-- 箇所1（上） -->
+            <circle cx="70" cy="10" r="10" fill="#dc2626"/>
+            <text x="70" y="14" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+            <!-- 箇所2（左下） -->
+            <circle cx="25" cy="105" r="10" fill="#dc2626"/>
+            <text x="25" y="109" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+            <!-- 箇所3（右下） -->
+            <circle cx="115" cy="105" r="10" fill="#dc2626"/>
+            <text x="115" y="109" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+
+            <text x="70" y="132" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">側面を均等に3方向から撮る</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 3. 平皿・枚数の多い皿（組皿） -->
+    <section id="photo-flat" class="card">
+      <h2 class="card-title">🍽️ 平皿（一点物）＆ 組皿の図解</h2>
+
+      <div class="grid-2col">
+        <div class="grid-card">
+          <strong style="font-size: 0.82rem; color: var(--primary);">平皿（一点物）の必須アングル</strong>
+          <!-- 平置き真横図解 -->
+          <svg viewBox="0 0 160 80" style="width: 100%; height: auto; margin-top: 6px;">
+            <line x1="10" y1="65" x2="150" y2="65" stroke="#94a3b8" stroke-width="2"/>
+            <!-- 平置き皿 -->
+            <path d="M25,50 Q80,68 135,50 Q80,56 25,50 Z" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+            <!-- 横からの矢印 -->
+            <path d="M10,35 L40,35 M30,28 L40,35 L30,42" stroke="#dc2626" stroke-width="2" fill="none"/>
+            <text x="80" y="25" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">真横から平置き撮影！</text>
+          </svg>
+          <ul style="font-size: 0.72rem; padding-left: 14px; margin-top: 4px; line-height: 1.4;">
+            <li>トップ：真上から</li>
+            <li>鳥の図など特徴絵柄アップ</li>
+            <li>裏面＋裏面側面（柄が多ければ三方向）</li>
+            <li>高さ・直径計測</li>
+          </ul>
+        </div>
+
+        <div class="grid-card">
+          <strong style="font-size: 0.82rem; color: var(--danger);">5枚以上の組皿トップ写真</strong>
+          <!-- 組皿1枚裏返し図解 -->
+          <svg viewBox="0 0 160 80" style="width: 100%; height: auto; margin-top: 6px;">
+            <circle cx="40" cy="30" r="18" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <circle cx="80" cy="25" r="18" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <circle cx="120" cy="30" r="18" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <circle cx="55" cy="52" r="18" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <!-- 1枚だけ裏向き -->
+            <circle cx="100" cy="52" r="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+            <circle cx="100" cy="52" r="8" fill="#fff" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="100" y="55" font-size="7" font-weight="bold" fill="#dc2626" text-anchor="middle">裏面</text>
+          </svg>
+          <p style="font-size: 0.72rem; color: var(--danger); font-weight: 800; margin-top: 4px; text-align: center;">
+            ★1枚だけ裏返してトップ撮影！
+          </p>
+          <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center;">
+            タイトルに必ず「5枚」等と点数を明記
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. アクセサリー・置物・ブラックライト -->
+    <section id="photo-accessory" class="card">
+      <h2 class="card-title">💍 アクセサリー・置物・特殊撮影</h2>
+
+      <!-- ウラングラス発光図解 -->
+      <div class="diagram-container" style="background: #0f172a; border-color: #334155;">
+        <div class="diagram-title" style="color: #4ade80;">🔦 ウラングラス・本真珠：ブラックライト撮影</div>
+        <svg class="diagram-svg" viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg">
+          <!-- ライト -->
+          <rect x="20" y="35" width="55" height="24" rx="4" fill="#6366f1"/>
+          <!-- 紫外線ビーム -->
+          <polygon points="75,40 160,10 160,85 75,54" fill="rgba(168, 85, 247, 0.35)"/>
+          <!-- グラス（緑色に発光） -->
+          <path d="M165,15 L195,15 L185,55 L175,55 Z M180,55 L180,85 M165,85 L195,85" stroke="#22c55e" stroke-width="3" fill="#4ade80" fill-opacity="0.75"/>
+          <text x="240" y="45" font-size="10" font-weight="bold" fill="#4ade80">緑色に発光！</text>
+          <text x="240" y="65" font-size="9" font-weight="bold" fill="#ef4444">★発光写真を</text>
+          <text x="240" y="78" font-size="9" font-weight="bold" fill="#ef4444">トップにする</text>
+        </svg>
+      </div>
+
+      <div class="grid-2col">
+        <div class="grid-card">
+          <strong style="font-size: 0.8rem; color: var(--dark);">アクセサリーの急所</strong>
+          <ul style="font-size: 0.73rem; padding-left: 14px; margin-top: 4px; line-height: 1.45;">
+            <li><strong>刻印：</strong>K18、SILVERはマクロ接写。</li>
+            <li><strong>貴金属：</strong>金・プラチナは小数点計量。</li>
+            <li><strong>べっ甲：</strong>虫食い穴がないかチェック。</li>
+            <li><strong>具材：</strong>リングゲージやノギスを活用。</li>
+          </ul>
+        </div>
+
+        <div class="grid-card">
+          <strong style="font-size: 0.8rem; color: var(--dark);">置物・彫刻の急所</strong>
+          <ul style="font-size: 0.73rem; padding-left: 14px; margin-top: 4px; line-height: 1.45;">
+            <li>仏像・ブロンズは<strong>顔の表情</strong>を重視。</li>
+            <li><strong style="color: var(--primary);">石・極上（象牙）・銅・銀・ブロンズは必ず重さを計る！</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 象牙NGバナー -->
+      <div class="banner-danger" style="margin-top: 10px;">
+        <strong>🚫 【超厳禁】「象牙」の文字・写真はメルカリ完全NG！</strong>
+        <p>
+          ・商品名・説明文で絶対に「象牙」と書かず、必ず<strong>「極上」</strong>に変換する！<br>
+          ・商品札や木箱に書かれた「象牙」の文字も<strong>写真に写り込まないよう画角から外す</strong>こと。
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. 洋食器 -->
+    <section id="photo-western" class="card">
+      <h2 class="card-title">☕ 洋食器の注意点 <span class="badge badge-primary">骨董との違い</span></h2>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px;">
+        骨董と違い、洋食器は**「少しの欠点でも細かく記載」**する必要があります！
+      </p>
+
+      <div style="display: flex; gap: 8px; flex-direction: column;">
+        <div class="note-box warn">
+          <strong>🔍 最重要チェックポイント：</strong><br>
+          ・金彩の剥がれ、ニュー、極小の欠け。<br>
+          ・<strong style="color: var(--danger);">カップの取っ手の「直し」</strong>が非常に多いので念入りに確認！<br>
+          ・カトラリー傷・スレは写真掲載し、説明文に<strong>「少々使用感あります」</strong>と記載。
+        </div>
+
+        <!-- セットの数え方図解 -->
+        <div style="background: #f1f5f9; border-radius: 8px; padding: 10px;">
+          <strong style="font-size: 0.8rem; color: var(--dark);">カップ＆ソーサーの数え方ルール</strong>
+          <div style="display: flex; align-items: center; justify-content: space-around; margin-top: 8px; font-size: 0.75rem;">
+            <div style="text-align: center;">
+              ☕ ＋ 🍽️ ＝ <strong>1客</strong><br>
+              <small>両方揃って「1客」</small>
+            </div>
+            <div style="color: var(--danger); font-weight: bold;">|</div>
+            <div style="text-align: center;">
+              ソーサーが余る場合<br>
+              <strong>「〇客とソーサー〇点」</strong><br>
+              <small>タイトルや説明文に明記</small>
+            </div>
           </div>
         </div>
-        <div class="shot-item"><span class="shot-badge">2枚目</span><div class="shot-text">正面</div></div>
-        <div class="shot-item"><span class="shot-badge">3枚目</span><div class="shot-text">側面</div></div>
-        <div class="shot-item"><span class="shot-badge">4枚目</span><div class="shot-text">反対の側面</div></div>
-        <div class="shot-item"><span class="shot-badge">5枚目</span><div class="shot-text">真上</div></div>
-        <div class="shot-item"><span class="shot-badge">6枚目</span><div class="shot-text">背面</div></div>
-        <div class="shot-item"><span class="shot-badge">7枚目</span><div class="shot-text">真裏（底面）</div></div>
-        <div class="shot-item"><span class="shot-badge">8枚目</span><div class="shot-text">高さ・幅（直径、口径）のサイズ計測</div></div>
-        <div class="shot-item"><span class="shot-badge">9枚目〜</span><div class="shot-text">傷の状態 ＋ 木箱（きれいに紐掛けをした状態）</div></div>
-      </div>
-
-      <div class="note-box">
-        <strong>💡 価格帯による枚数調整の目安（手書きメモより）：</strong><br>
-        ・高額品（目安2万円〜3万円以上）：人物画のアップ、斜め上から、高さ、底など細部まで丁寧に枚数を多く撮る。<br>
-        ・1万円以下：枚数は抑えめでOK（無駄に多く撮りすぎない）。
       </div>
     </section>
 
-    <!-- 5. 大皿・平皿・枚数の多い皿 -->
-    <section id="photo-large" class="card">
-      <h2 class="card-title">🎨 大皿・平皿・組皿の撮影ルール <span class="badge-danger">注記多数</span></h2>
+    <!-- 6. 撮影後の行き先仕分け -->
+    <section id="flow" class="card">
+      <h2 class="card-title">📦 撮影後の行き先仕分け</h2>
 
-      <div class="genre-card">
-        <div class="genre-header">
-          <span class="genre-title">大皿の撮り方</span>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- 札待ち -->
+        <div style="border: 2px solid var(--danger); background: #fff5f5; border-radius: 8px; padding: 10px;">
+          <div style="font-weight: 800; font-size: 0.85rem; color: var(--danger);">🚨 撮影後すぐに売れた！</div>
+          <div style="font-weight: 800; font-size: 0.82rem; margin-top: 2px;">👉 1F または 3F「札待ちコーナー」へ</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">発送用伝票・札が準備できるまでの一時待機場所。</div>
         </div>
-        <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-          <li><strong>皿立てを使ってトップ撮影</strong>することが多い。</li>
-          <li><strong>大皿は皿を4分割して撮影する</strong>（絵柄や状態を細かく見せるため）。</li>
-          <li>傷の状態を見る箇所が多いため入念に確認する。</li>
-          <li><strong style="color: var(--danger);">【必須】大皿は裏面3ヶ所の側面を必ず撮影する！</strong></li>
-        </ul>
-      </div>
 
-      <div class="genre-card">
-        <div class="genre-header">
-          <span class="genre-title">平皿（一点物）の撮り方</span>
+        <!-- アクセ -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 9px; background: #fff;">
+          <div style="font-weight: 800; font-size: 0.82rem;">💍 アクセサリー</div>
+          <div style="font-size: 0.75rem; color: var(--primary); font-weight: 800;">👉 1F 撮影台の足元の箱へ（箱番号例: <code>東さ6-0209ア①</code>）</div>
         </div>
-        <div class="shot-steps">
-          <div class="shot-item"><span class="shot-badge top">1</span><div class="shot-text">トップは真上からの写真</div></div>
-          <div class="shot-item"><span class="shot-badge">2</span><div class="shot-text">タイトルに「鳥の図」などの記載があれば、その特徴がわかるアップを1枚入れる</div></div>
-          <div class="shot-item"><span class="shot-badge">3</span><div class="shot-text">平置き状態の写真【真横から】</div></div>
-          <div class="shot-item"><span class="shot-badge">4</span><div class="shot-text">裏面 → 裏面の側面（柄がいっぱいある場合は三方向から撮影）</div></div>
-          <div class="shot-item"><span class="shot-badge">5</span><div class="shot-text">高さ、直径のサイズ写真</div></div>
-          <div class="shot-item"><span class="shot-badge">6</span><div class="shot-text">傷の写真</div></div>
-        </div>
-      </div>
 
-      <div class="genre-card">
-        <div class="genre-header">
-          <span class="genre-title">枚数の多い皿（組皿）の撮り方</span>
+        <!-- 洋食器・茶道具箱 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 9px; background: #fff;">
+          <div style="font-weight: 800; font-size: 0.82rem;">📦 箱単位の洋食器・茶道具（茶碗・水指・香合・棗など）</div>
+          <div style="font-size: 0.75rem; color: var(--text); font-weight: 800;">👉 プチプチ多めで保護し、<strong>「箱本体」と「蓋」の両方に番号</strong>を書いて3Fへ</div>
         </div>
-        <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-          <li><strong>5枚以上ある場合：</strong>1枚だけ裏に向けて並べ、トップ写真を撮影する（裏印や状態を1枚で見せるため）。</li>
-          <li><strong>タイトル：</strong>商品名に必ず「〇枚」や「点数」を明記する。</li>
-        </ul>
+
+        <!-- 通常商品 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 9px; background: #fff;">
+          <div style="font-weight: 800; font-size: 0.82rem;">🏺 通常商品</div>
+          <div style="font-size: 0.75rem; color: var(--text); font-weight: 800;">👉 サイズ感を揃えて箱入れし、箱番号の紙を貼って3Fへ</div>
+        </div>
       </div>
     </section>
 
-    <!-- 6. アクセサリー・置物・彫刻 -->
-    <section id="photo-accessory" class="card">
-      <h2 class="card-title">💍 アクセサリー・置物・彫刻の撮影</h2>
-
-      <div class="genre-card">
-        <div class="genre-header">
-          <span class="genre-title">アクセサリー等の撮り方</span>
-        </div>
-        <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-          <li><strong>点数が多い場合：</strong>商品札のタイトルを見て、メインになるものを決めてトップ撮影。</li>
-          <li><strong>刻印の確認：</strong>K18、SILVERなどの刻印があるか確認し、あればアップで接写撮影。</li>
-          <li><strong>重さの計測：</strong>価値のあるもの（金やプラチナ）は<strong>小数点単位まで計れる精密秤</strong>を使用。</li>
-          <li><strong>計測具：</strong>必要に応じてリングゲージやノギス（真珠や珊瑚玉用）を使って計測・撮影。</li>
-          <li><strong>状態チェック：</strong>金具の破損を記載。べっ甲なら<strong>虫食い</strong>に気をつける。</li>
-        </ul>
-      </div>
-
-      <div class="genre-card">
-        <div class="genre-header">
-          <span class="genre-title">置物・彫刻の撮り方</span>
-        </div>
-        <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-          <li>仏像やブロンズは<strong>顔の表情がはっきりわかるように</strong>撮影する。</li>
-          <li><strong style="color: var(--primary);">石・象牙（極上）・銅・銀・ブロンズ製品は必ず重さを計る！</strong></li>
-        </ul>
-      </div>
-
-      <div class="genre-card alert-border">
-        <div class="genre-header">
-          <span class="genre-title">本真珠・ウラングラス（ブラックライト撮影）</span>
-        </div>
-        <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-          <li>本真珠、ウラングラスは<strong>ブラックライトを当てて撮影</strong>する。</li>
-          <li><strong style="color: var(--danger);">ウラングラスにブラックライトを当てて発光した写真は、必ず「トップ画面」にする！</strong></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 7. 洋食器 -->
-    <section id="photo-western" class="card">
-      <h2 class="card-title">☕ 洋食器の注意点 <span class="badge-primary">骨董との違い</span></h2>
-
-      <div class="note-box warn" style="margin-bottom: 10px;">
-        <strong>骨董品とは違って傷の状態を細かく記載する必要があります！</strong>
-      </div>
-
-      <ul style="font-size: 0.8rem; padding-left: 18px; line-height: 1.6;">
-        <li><strong>重点チェック箇所：</strong>金彩剥がれ、ニュー、小さな欠け。<strong>カップの取っ手に直しがあることも多い</strong>ため注意。</li>
-        <li><strong>カトラリー傷・スレ：</strong>写真だけ撮って、説明文に<strong>「少々使用感あります」</strong>と記載。</li>
-        <li><strong>サイズ・点数：</strong>全体の点数、それぞれの種類ごとのサイズも記載する。</li>
-        <li><strong>セットの数え方：</strong>
-          <ul>
-            <li>カップ＆ソーサーは両方そろって「1客」とする。</li>
-            <li>ソーサーが1点多いときは「〇客とソーサー〇点」とタイトルか説明文に明記する（不揃いなことがたまにあります）。</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <!-- 8. 傷・直しの表記基準 -->
-    <section class="card">
-      <h2 class="card-title">🔍 傷の基準とメルカリ状態選択</h2>
-      
-      <table>
-        <tr>
-          <th style="width: 28%;">傷のレベル</th>
-          <th style="width: 38%;">説明文の表記</th>
-          <th>メルカリ状態ステータス</th>
-        </tr>
-        <tr>
-          <td><strong>1mmほど</strong></td>
-          <td>ごく小さな傷</td>
-          <td>目立った傷や汚れなし / やや傷や汚れあり</td>
-        </tr>
-        <tr>
-          <td><strong>2mmより大きめ</strong><br><small>目視で分かるが全体から見て目立ちにくい</small></td>
-          <td>小傷</td>
-          <td>やや傷や汚れあり</td>
-        </tr>
-        <tr>
-          <td><strong>それ以上大きい欠け・ニュー</strong></td>
-          <td>傷</td>
-          <td>傷や汚れあり</td>
-        </tr>
-        <tr>
-          <td><strong>接着剤等の修復</strong></td>
-          <td>直し</td>
-          <td>傷や汚れあり<br><small>※複数中1点のみの直しは「やや傷や汚れあり」も可</small></td>
-        </tr>
-      </table>
-
-      <div class="note-box" style="margin-top: 10px;">
-        <strong>※大きな商品や高額（3万円？）な物は、傷や直しの場所も必ず説明文に明記すること！</strong><br>
-        サイズ表記：高さか幅のどちらか大きい方、または必要な情報を説明欄に入力（両方入力すればなおOK）。
-      </div>
-    </section>
-
-    <!-- 9. 最終チェックリスト -->
+    <!-- 7. チェックリスト -->
     <section id="check" class="card">
-      <h2 class="card-title">✅ 出品直前 最終チェックリスト</h2>
+      <h2 class="card-title">✅ 出品ボタンを押す前の最終チェック</h2>
       <div class="checklist">
-        <label><input type="checkbox"> 配送料の負担は「送料込み」になっているか（着払い注意）</label>
+        <label><input type="checkbox"> 配送料の負担は「送料込み」か（着払い注意）</label>
         <label><input type="checkbox"> 配送方法は「未定」になっているか</label>
         <label><input type="checkbox"> 発送元の地域は「兵庫県」になっているか</label>
         <label><input type="checkbox"> 発送までの日数は「4〜7日」になっているか</label>
-        <label><input type="checkbox"> 商品名の後に「箱番号（例: 東さ6-0209①）」を入れたか</label>
-        <label><input type="checkbox"> 価格の桁間違いはないか（3,000円以下ではないか）</label>
-        <label><input type="checkbox"> 象牙製品に「象牙」の単語・文字の写り込みはないか（「極上」に変換済か）</label>
-        <label><input type="checkbox"> ウラングラスの場合、発光写真をトップに設定したか</label>
-        <label><input type="checkbox"> 大皿の場合、裏面3ヶ所の側面を撮影したか</label>
-        <label><input type="checkbox"> 5枚以上の組皿の場合、1枚裏返しでトップ撮影したか</label>
+        <label><input type="checkbox"> 商品名の最後に「箱番号（例: 東さ6-0209①）」を入れたか</label>
+        <label><input type="checkbox"> 価格の桁間違いはないか（3,000円以下は出品不可）</label>
+        <label><input type="checkbox"> 「象牙」の文字・写真はないか（「極上」に変換済か）</label>
+        <label><input type="checkbox"> 大皿：裏面3箇所の側面を撮影したか</label>
+        <label><input type="checkbox"> 5枚以上の組皿：1枚裏返しでトップ撮影したか</label>
+        <label><input type="checkbox"> ウラングラス：発光写真をトップ画面にしたか</label>
       </div>
     </section>
 
