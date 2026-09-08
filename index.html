@@ -114,7 +114,7 @@
       color: #92400e;
     }
 
-    /* 🏷️ 商品札の完全図解モック（左端に縦の赤線） */
+    /* 🏷️ 商品札の完全図解モック（右端に縦の赤線） */
     .tag-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -125,7 +125,7 @@
       background: #fffdf9;
       border: 2px dashed #94a3b8;
       border-radius: 8px;
-      padding: 12px 10px 12px 16px;
+      padding: 12px 14px 12px 10px;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -133,15 +133,15 @@
       min-height: 220px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }
-    /* ★ 左端の縦赤線 ★ */
+    /* ★ 右端の縦赤線 ★ */
     .tag-card.has-red-line {
-      border-left: 5px solid var(--danger);
+      border-right: 6px solid var(--danger);
     }
     .red-line-label {
       position: absolute;
-      left: -2px;
+      right: -2px;
       top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
+      transform: translateY(-50%) rotate(90deg);
       font-size: 0.62rem;
       font-weight: 800;
       color: var(--danger);
@@ -154,7 +154,7 @@
     .tag-star-icon {
       position: absolute;
       top: 6px;
-      right: 10px;
+      right: 12px;
       color: var(--warning);
       font-size: 1.3rem;
       line-height: 1;
@@ -166,45 +166,7 @@
       margin-top: 6px;
     }
 
-    /* 🖼️ 資料画像再現：ダメージ4分割ビジュアル */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 12px 0;
-    }
-    .photo-box {
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 8px;
-      background: #fff;
-      text-align: center;
-    }
-    .photo-title {
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--dark);
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .photo-svg {
-      width: 100%;
-      height: 110px;
-      border-radius: 6px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-    .photo-desc {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 5px;
-      line-height: 1.3;
-      text-align: left;
-    }
-
-    /* 撮影ステップ（数字） */
+    /* 撮影ステップ */
     .step-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -285,24 +247,24 @@
   </header>
 
   <nav class="nav-tabs">
-    <a href="#tags">🏷️ 商品札（赤線ルール）</a>
-    <a href="#rules">⚠️ 厳禁・出品ストップ</a>
-    <a href="#photo-base">📸 皿・茶碗の基本順序</a>
-    <a href="#damage">🔍 傷写真・ダメージ基準</a>
+    <a href="#tags">🏷️ 商品札（右端赤線）</a>
+    <a href="#rules">⚠️ 厳禁・ストップ基準</a>
+    <a href="#photo-base">📸 基本撮影フロー</a>
+    <a href="#damage">🔍 傷の表記基準</a>
     <a href="#photo-genres">🎨 大皿・アクセ・洋食器</a>
-    <a href="#listing">📝 出品入力・配送設定</a>
+    <a href="#listing">📝 出品設定ルール</a>
     <a href="#storage">📦 保管・仕分け</a>
     <a href="#check">✅ 最終チェック</a>
   </nav>
 
   <main class="container">
 
-    <!-- 1. 商品札の書き方（左端に縦赤線） -->
+    <!-- 1. 商品札の書き方（右端に縦赤線） -->
     <section id="tags" class="card">
       <h2 class="card-title">🏷️ 商品札の書き分け図解 <span class="badge badge-danger">記入ミス厳禁</span></h2>
 
       <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
-        右上の<strong>「☆」の有無</strong>で表裏の書き分けが逆になります。☆付きは<strong>【フダの左端に縦で赤線】</strong>を入れます！
+        右上の<strong>「☆」の有無</strong>で表裏の書き分けが逆になります。☆付きは<strong>【フダの右端に縦で赤線】</strong>を入れます！
       </p>
 
       <div class="tag-grid">
@@ -325,7 +287,7 @@
         <!-- ☆付き商品（店内戻し） -->
         <div>
           <div class="tag-card has-red-line">
-            <span class="red-line-label">左端に縦赤線！</span>
+            <span class="red-line-label">右端に縦赤線！</span>
             <div style="display: flex; justify-content: space-between;">
               <div style="font-size: 0.78rem; font-weight: 800; color: #1e293b;">
                 古伊万里 皿 2枚<br>
@@ -339,7 +301,7 @@
               東さ6-0209☆1F
             </div>
           </div>
-          <p class="tag-caption">☆付き商品（店内戻し）<br><span style="color: var(--danger);">【左端縦赤線】＋【裏面記入】</span></p>
+          <p class="tag-caption">☆付き商品（店内戻し）<br><span style="color: var(--danger);">【右端縦赤線】＋【裏面記入】</span></p>
         </div>
       </div>
 
@@ -349,11 +311,11 @@
         ・2F展示戻し → <code>東さ6-0209☆2F</code><br>
         ・札に「☆げ」記載 → <code>☆2F</code> と記入し、<strong>2F象牙コーナー</strong>に飾る。<br>
         ・札に「☆茶」記載 → <code>☆2F</code> と記入し、<strong>2F茶道具コーナー</strong>に飾る。<br>
-        <strong style="color: var(--danger);">※店内商品札の左端に赤線が引かれている場合はメルカリにも出品されているということなので赤線の引き忘れに注意する！</strong>
+        <strong style="color: var(--danger);">※店内商品札の右端に赤線が引かれている場合はメルカリにも出品されているということなので赤線の引き忘れに注意する！</strong>
       </div>
     </section>
 
-    <!-- 2. 出品・撮影前の厳禁・確認ルール -->
+    <!-- 2. 出品前の厳禁・出品ストップ基準 -->
     <section id="rules" class="card">
       <h2 class="card-title">⚠️ 出品前の厳禁・出品ストップ基準</h2>
 
@@ -411,72 +373,18 @@
       </div>
     </section>
 
-    <!-- 4. 傷写真とダメージ表記基準（資料の写真4枚を鮮明再現） -->
+    <!-- 4. 傷の状態と記載基準（シンプル基準表） -->
     <section id="damage" class="card">
-      <h2 class="card-title">🔍 傷写真の確認ポイント ＆ 表記基準 <span class="badge badge-primary">資料画像再現</span></h2>
+      <h2 class="card-title">🔍 傷の状態・説明欄の表記・状態ステータス基準</h2>
 
       <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px;">
-        資料に掲載されている4つの重要ダメージ例です。赤枠で囲まれた箇所を必ず確認・接写してください。
+        ※高さか幅のどちらか大きい方、または必要な情報を商品説明欄に入力（両方入力すればなおOK）。その後商品の状態（欠け、小傷、汚れ等）を入力します。
       </p>
-
-      <!-- 資料の実物写真4枚をSVGベクターで鮮明に模写再現 -->
-      <div class="photo-grid">
-        <!-- 小傷 -->
-        <div class="photo-box">
-          <div class="photo-title"><span>小傷</span><span style="font-size: 0.65rem; color: #64748b;">縁の微細な欠け</span></div>
-          <svg class="photo-svg" viewBox="0 0 160 110">
-            <!-- 皿の縁 -->
-            <path d="M10,90 Q80,20 150,90" stroke="#0284c7" stroke-width="12" fill="none"/>
-            <path d="M10,90 Q80,20 150,90" stroke="#e0f2fe" stroke-width="6" fill="none"/>
-            <!-- 傷部分の赤枠 -->
-            <rect x="68" y="32" width="26" height="26" fill="none" stroke="#dc2626" stroke-width="2"/>
-            <circle cx="81" cy="45" r="4" fill="#64748b"/>
-          </svg>
-          <p class="photo-desc">皿の縁などにある1〜2mmの削れ。赤枠で接写撮影する。</p>
-        </div>
-
-        <!-- 虫喰い -->
-        <div class="photo-box">
-          <div class="photo-title"><span>虫喰い</span><span style="font-size: 0.65rem; color: #64748b;">釉薬の剥げ</span></div>
-          <svg class="photo-svg" viewBox="0 0 160 110">
-            <!-- 高台・底面 -->
-            <rect x="25" y="20" width="110" height="70" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
-            <!-- 虫喰い斑点 -->
-            <circle cx="50" cy="40" r="3" fill="#92400e"/><circle cx="70" cy="35" r="4" fill="#92400e"/><circle cx="95" cy="45" r="3" fill="#92400e"/>
-            <rect x="58" y="25" width="40" height="35" fill="none" stroke="#dc2626" stroke-width="2"/>
-          </svg>
-          <p class="photo-desc">古陶磁特有の釉薬剥げ。広範囲にある場合はアップで撮影。</p>
-        </div>
-
-        <!-- 線状の傷 -->
-        <div class="photo-box">
-          <div class="photo-title"><span>線状の傷</span><span style="font-size: 0.65rem; color: #64748b;">ニュウ・ヒビ</span></div>
-          <svg class="photo-svg" viewBox="0 0 160 110">
-            <path d="M20,80 Q80,40 140,80" stroke="#3b82f6" stroke-width="8" fill="none"/>
-            <!-- 線状傷 -->
-            <line x1="75" y1="50" x2="88" y2="70" stroke="#1e293b" stroke-width="2"/>
-            <rect x="65" y="42" width="30" height="35" fill="none" stroke="#dc2626" stroke-width="2"/>
-          </svg>
-          <p class="photo-desc">表面の引っかき傷やニュウ（入）。光を当ててはっきり写す。</p>
-        </div>
-
-        <!-- 直し -->
-        <div class="photo-box">
-          <div class="photo-title"><span>直し</span><span style="font-size: 0.65rem; color: #64748b;">金継ぎ・接着修復</span></div>
-          <svg class="photo-svg" viewBox="0 0 160 110">
-            <ellipse cx="80" cy="70" rx="60" ry="30" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
-            <!-- 直し部分（金継ぎ風） -->
-            <path d="M70,40 Q80,55 90,45" stroke="#eab308" stroke-width="4" fill="none"/>
-            <rect x="62" y="32" width="35" height="30" fill="none" stroke="#dc2626" stroke-width="2"/>
-          </svg>
-          <p class="photo-desc">接着剤や金継ぎ等による修復箇所。「直し」と明記必須。</p>
-        </div>
-      </div>
 
       <table>
         <tr>
-          <th style="width: 25%;">状態の目安</th>
-          <th style="width: 35%;">説明欄の記載</th>
+          <th style="width: 28%;">傷の目安</th>
+          <th style="width: 34%;">説明欄の記載</th>
           <th>メルカリの「商品の状態」</th>
         </tr>
         <tr>
@@ -495,15 +403,16 @@
           <td>傷や汚れあり</td>
         </tr>
         <tr>
-          <td><strong>修復・接着剤使用</strong></td>
+          <td><strong>接着剤等の修復</strong></td>
           <td>「直し」と明記</td>
-          <td>傷や汚れあり<br><small>※多数中1点のみなら「やや傷」可</small></td>
+          <td>傷や汚れあり<br><small>※多数中1点のみなら「やや傷や汚れあり」も可</small></td>
         </tr>
       </table>
 
-      <p style="font-size: 0.74rem; color: var(--danger); font-weight: 700; margin-top: 6px;">
-        ※大きな商品や高額（3万円？）な物はキズや直しの場所も必ず明記すること！
-      </p>
+      <div class="note-box warn" style="margin-top: 10px;">
+        <strong>※大きな商品や高額（3万円？）な物はキズや直しの場所も必ず明記すること！</strong><br>
+        （要確認ダメージ：小傷、虫喰い、線状の傷・ニュウ、金継ぎや接着剤の直し）
+      </div>
     </section>
 
     <!-- 5. ジャンル別 撮影ルール（大皿・組皿・アクセ・洋食器） -->
@@ -676,7 +585,7 @@
         <label><input type="checkbox"> 商品名の最後に「箱番号（例: 東さ6-0209①）」を入れたか</label>
         <label><input type="checkbox"> 販売価格の桁間違いはないか（3,000円以下は出品不可）</label>
         <label><input type="checkbox"> 【厳禁】「象牙」の文字・写真はないか（極上に変換済か）</label>
-        <label><input type="checkbox"> ☆付き商品：札の左端に縦で赤線を引き、裏面に書いたか</label>
+        <label><input type="checkbox"> ☆付き商品：札の右端に縦で赤線を引き、裏面に書いたか</label>
         <label><input type="checkbox"> 大皿：皿立て使用、4分割、裏面3ヶ所の側面を撮ったか</label>
         <label><input type="checkbox"> 5枚以上の組皿：1枚裏返しでトップ撮影したか</label>
         <label><input type="checkbox"> ウラングラス：発光写真をトップ画像にしたか</label>
