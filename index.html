@@ -26,11 +26,11 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      font-size: 16px; /* 基本サイズを拡大 */
+      font-size: 16px;
       padding-bottom: 100px;
     }
 
-    /* ヘッダー拡大 */
+    /* ヘッダー */
     header {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       color: #fff;
@@ -43,7 +43,7 @@
     header h1 { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
     header p { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
 
-    /* ナビゲーションタブ拡大 */
+    /* ナビゲーションタブ */
     .nav-tabs {
       display: flex;
       gap: 8px;
@@ -71,7 +71,7 @@
 
     .container { padding: 16px; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
 
-    /* カード枠拡大 */
+    /* カード */
     .card {
       background: var(--card-bg);
       border-radius: 16px;
@@ -92,7 +92,7 @@
     .badge-primary { background: var(--primary-soft); color: var(--primary); }
     .badge-danger { background: var(--danger-soft); color: var(--danger); }
 
-    /* 警告バナー拡大 */
+    /* 警告バナー */
     .banner-danger {
       background: var(--danger-soft);
       border: 2.5px solid var(--danger);
@@ -103,7 +103,7 @@
     .banner-danger strong { color: var(--danger); font-size: 1.05rem; display: block; margin-bottom: 6px; }
     .banner-danger p { font-size: 0.92rem; color: #991b1b; line-height: 1.5; font-weight: 600; }
 
-    /* 注記ボックス拡大 */
+    /* 注記ボックス */
     .note-box {
       background: #f8fafc;
       border-left: 5px solid var(--primary);
@@ -119,8 +119,13 @@
       border-left-color: var(--warning);
       color: #92400e;
     }
+    .note-box.danger {
+      background: #fef2f2;
+      border-left-color: var(--danger);
+      color: #991b1b;
+    }
 
-    /* 🏷️ 商品札モック拡大（右端縦赤線） */
+    /* 🏷️ 商品札モック（右端縦赤線） */
     .tag-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -168,7 +173,36 @@
       margin-top: 8px;
     }
 
-    /* 撮影ステップ拡大 */
+    /* 箱番号フォーマット分解図 */
+    .box-rule-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .box-parts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .box-part-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border: 1.5px solid var(--primary);
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
+    .box-part-chip span.part-val { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+    .box-part-chip span.part-lbl { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-top: 2px; }
+
+    /* 撮影ステップ */
     .step-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -202,7 +236,7 @@
     }
     .step-badge.red { background: var(--danger); }
 
-    /* ジャンル別カード拡大 */
+    /* ジャンル別カード */
     .genre-card {
       border: 2px solid var(--border);
       border-radius: 12px;
@@ -222,12 +256,12 @@
       align-items: center;
     }
 
-    /* テーブル拡大 */
+    /* テーブル */
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 10px; }
     th, td { border: 1.5px solid var(--border); padding: 10px 8px; text-align: left; }
     th { background: #f1f5f9; font-weight: 800; color: var(--dark); }
 
-    /* チェックリスト拡大（タップしやすく） */
+    /* チェックリスト */
     .checklist label {
       display: flex;
       align-items: center;
@@ -254,19 +288,142 @@
   </header>
 
   <nav class="nav-tabs">
+    <a href="#rules">⚠️ 厳禁・出品前確認</a>
+    <a href="#box-name">🏷️ 箱番号の付け方</a>
+    <a href="#listing">📝 出品設定（符牒ルール）</a>
     <a href="#tags">🏷️ 商品札（右端赤線）</a>
-    <a href="#rules">⚠️ 厳禁・ストップ基準</a>
     <a href="#photo-base">📸 基本撮影フロー</a>
     <a href="#damage">🔍 傷の表記基準</a>
     <a href="#photo-genres">🎨 大皿・アクセ・洋食器</a>
-    <a href="#listing">📝 出品設定ルール</a>
     <a href="#storage">📦 保管・仕分け</a>
     <a href="#check">✅ 最終チェック</a>
   </nav>
 
   <main class="container">
 
-    <!-- 1. 商品札の書き方（右端に縦赤線） -->
+    <!-- 1. 出品前の厳禁・出品ストップ基準 -->
+    <section id="rules" class="card">
+      <h2 class="card-title">⚠️ 出品前の厳禁・出品ストップ基準</h2>
+
+      <div class="banner-danger">
+        <strong>🚫 【超厳禁】象牙はメルカリ出品禁止！</strong>
+        <p>
+          ・商品名・説明文で絶対に「象牙」と書かず、必ず<strong>「極上」</strong>に変換する！<br>
+          ・商品札や木箱の墨書きの「象牙」という文字も<strong>絶対に写真に写り込ませてはいけません</strong>。
+        </p>
+      </div>
+
+      <div class="note-box warn" style="margin-top: 0;">
+        <strong>🛑 出品・撮影ストップ基準：</strong><br>
+        ・<strong>撮影端末：</strong>UQ 4Gのスマホは撮影には使用しない。<br>
+        ・<strong>出品不可：</strong>基本的に<strong>3,000円以下</strong>のものは出品しない。<br>
+        ・<strong>桁間違い注意：</strong>数字が読みにくいとき、商品札に1枚当たりの価格が書かれている場合、タイトルが分からない時は社長または周りに質問する。
+      </div>
+    </section>
+
+    <!-- 2. 箱番号の付け方（店舗別・命名規則） -->
+    <section id="box-name" class="card">
+      <h2 class="card-title">🏷️ 箱番号の付け方ルール <span class="badge badge-primary">完全解説</span></h2>
+
+      <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 10px;">
+        箱番号は以下の<strong>4つの要素（店舗 ＋ 撮影者 ＋ 日付 ＋ 箱目）</strong>を組み合わせて付けます。
+      </p>
+
+      <div class="box-rule-container">
+        <!-- 分解チップ -->
+        <div class="box-parts">
+          <div class="box-part-chip">
+            <span class="part-val">東 / 新</span>
+            <span class="part-lbl">①保管展示店舗</span>
+          </div>
+          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+          <div class="box-part-chip">
+            <span class="part-val">さ / S</span>
+            <span class="part-lbl">②撮影者名1文字</span>
+          </div>
+          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+          <div class="box-part-chip">
+            <span class="part-val">6-0209</span>
+            <span class="part-lbl">③撮影日</span>
+          </div>
+          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+          <div class="box-part-chip">
+            <span class="part-val">①</span>
+            <span class="part-lbl">④何箱目か</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+            <strong>① 保管展示店舗：</strong><br>
+            ・東店で保管展示しているもの 👉 <strong>「東」</strong><br>
+            ・新店で保管展示しているもの 👉 <strong>「新」</strong>
+          </div>
+
+          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+            <strong>② 撮影者名：</strong>撮影者の名前一文字（ひらがな「さ」や、アルファベット「S」など）
+          </div>
+
+          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+            <strong>③ 日付・④ 箱目：</strong>撮影日（例：6-0209）＋ 何箱目か（①など）
+          </div>
+        </div>
+
+        <div style="background: #eff6ff; border: 2px solid #93c5fd; border-radius: 10px; padding: 12px 16px; font-size: 0.95rem; margin-top: 4px;">
+          <strong>💡 完成例：</strong><br>
+          ・東店・撮影者「さ」の場合 👉 <code>東さ6-0209①</code><br>
+          ・新店・撮影者「S」の場合 👉 <code>新S6-0209①</code><br>
+          ・アクセサリーの場合 👉 <code>東さ6-0209ア①</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. メルカリ出品設定 ＆ 符牒ルール -->
+    <section id="listing" class="card">
+      <h2 class="card-title">📝 出品設定 ＆ 符牒の入力ルール <span class="badge badge-danger">最重要</span></h2>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+
+        <!-- 符牒ルールバナー -->
+        <div style="background: #fff5f5; border: 2.5px solid var(--danger); border-radius: 10px; padding: 14px;">
+          <strong style="color: var(--danger); font-size: 1rem; display: block; margin-bottom: 4px;">
+            🚨 【重要】商品名の最後に「符牒」を忘れないこと！
+          </strong>
+          <p style="font-size: 0.9rem; color: #991b1b; line-height: 1.5;">
+            商品札や商品名に符牒（タコサ等）が入っているものは、<strong>出品時、商品名の最後に符牒を必ず入力してください（入れ忘れ厳禁！）</strong>。
+          </p>
+        </div>
+
+        <!-- 商品名フォーマット -->
+        <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
+          <strong style="font-size: 0.95rem; color: var(--primary);">③ 商品名フォーマット</strong>
+          
+          <div style="background: #eff6ff; border: 1.5px solid #93c5fd; padding: 10px 14px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; margin: 8px 0; color: #1e293b;">
+            [商品名] [箱番号] <span style="color: var(--danger);">[符牒]</span>
+          </div>
+
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            <strong>入力例（符牒あり）：</strong><br>
+            <code>古伊万里 染付 皿 2枚 東さ6-0209① タコサ</code><br>
+            <small style="color: #64748b;">※符牒のない商品は <code>古伊万里 染付 皿 2枚 東さ6-0209①</code> でOKです。</small>
+          </p>
+        </div>
+
+        <!-- 配送設定 -->
+        <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
+          <strong style="font-size: 0.95rem; color: var(--danger);">⑥ 配送設定（撮影前に必ず確認！）</strong>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem; margin-top: 6px;">
+            <div>・配送料：<strong>送料込み</strong></div>
+            <div>・配送方法：<strong>未定</strong></div>
+            <div>・発送元：<strong>兵庫県</strong></div>
+            <div>・発送までの日数：<strong>4〜7日</strong></div>
+          </div>
+          <small style="color: #b91c1c; font-size: 0.82rem; font-weight: bold; display: block; margin-top: 6px;">※たまに着払いになっていることがあるので撮影前に要確認！</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 商品札の書き方（右端に縦赤線） -->
     <section id="tags" class="card">
       <h2 class="card-title">🏷️ 商品札の書き分け図解 <span class="badge badge-danger">記入ミス厳禁</span></h2>
 
@@ -327,28 +484,7 @@
       </div>
     </section>
 
-    <!-- 2. 出品前の厳禁・出品ストップ基準 -->
-    <section id="rules" class="card">
-      <h2 class="card-title">⚠️ 出品前の厳禁・出品ストップ基準</h2>
-
-      <div class="banner-danger">
-        <strong>🚫 【超厳禁】象牙はメルカリ出品禁止！</strong>
-        <p>
-          ・商品名・説明文で絶対に「象牙」と書かず、必ず<strong>「極上」</strong>に変換する！<br>
-          ・商品札や木箱の墨書きの「象牙」という文字も<strong>絶対に写真に写り込ませてはいけません</strong>。
-        </p>
-      </div>
-
-      <div class="note-box warn" style="margin-top: 0;">
-        <strong>🛑 出品・撮影ストップ基準：</strong><br>
-        ・<strong>撮影端末：</strong>UQ 4Gのスマホは撮影には使用しない。<br>
-        ・<strong>出品不可：</strong>基本的に<strong>3,000円以下</strong>のものは出品しない。<br>
-        ・<strong>社長確認：</strong><strong>6,000円以上</strong>の商品で符帳（タコサ等）のないものは社長に聞いてから撮影する。<br>
-        ・<strong>桁間違い注意：</strong>数字が読みにくいとき、商品札に1枚当たりの価格が書かれている場合、タイトルが分からない時は社長または周りに質問する。
-      </div>
-    </section>
-
-    <!-- 3. 基本撮影フロー（皿・茶碗・骨董） -->
+    <!-- 5. 基本撮影フロー（皿・茶碗・骨董） -->
     <section id="photo-base" class="card">
       <h2 class="card-title">📸 基本撮影フロー（皿・茶碗・骨董） <span class="badge badge-primary">全商品の基本</span></h2>
 
@@ -385,7 +521,7 @@
       </div>
     </section>
 
-    <!-- 4. 傷の状態と記載基準 -->
+    <!-- 6. 傷の状態と記載基準 -->
     <section id="damage" class="card">
       <h2 class="card-title">🔍 傷の状態・説明欄の表記・状態ステータス基準</h2>
 
@@ -427,7 +563,7 @@
       </div>
     </section>
 
-    <!-- 5. ジャンル別 撮影ルール（大皿・組皿・アクセ・洋食器） -->
+    <!-- 7. ジャンル別 撮影ルール -->
     <section id="photo-genres" class="card">
       <h2 class="card-title">🎨 ジャンル別の撮影ルール・図解</h2>
 
@@ -444,7 +580,6 @@
           <li><strong style="color: var(--danger); font-size: 0.95rem;">【最重要】大皿は裏面3ヶ所の側面を必ず撮影する！</strong></li>
         </ul>
 
-        <!-- 大皿図解SVG拡大 -->
         <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px;">
           <svg viewBox="0 0 340 125" style="width: 100%; max-width: 450px; height: auto; display: block; margin: 0 auto;">
             <!-- 4分割（左） -->
@@ -519,35 +654,7 @@
       </div>
     </section>
 
-    <!-- 6. メルカリ出品設定 項目別ルール -->
-    <section id="listing" class="card">
-      <h2 class="card-title">📝 メルカリ出品設定ルール <span class="badge badge-primary">テンプレート使用</span></h2>
-
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
-          <strong style="font-size: 0.95rem; color: var(--primary);">③ 商品名フォーマット</strong>
-          <div style="background: #eff6ff; border: 1.5px solid #93c5fd; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; margin: 6px 0;">
-            [商品名] [箱番号]
-          </div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">
-            例：<code>古伊万里 皿 2枚 東さ6-0209①</code>（撮影者 東さ / 撮影日 6-0209 / 箱番号 ①）
-          </p>
-        </div>
-
-        <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
-          <strong style="font-size: 0.95rem; color: var(--danger);">⑥ 配送設定（撮影前に必ず確認！）</strong>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem; margin-top: 6px;">
-            <div>・配送料：<strong>送料込み</strong></div>
-            <div>・配送方法：<strong>未定</strong></div>
-            <div>・発送元：<strong>兵庫県</strong></div>
-            <div>・発送までの日数：<strong>4〜7日</strong></div>
-          </div>
-          <small style="color: #b91c1c; font-size: 0.82rem; font-weight: bold; display: block; margin-top: 6px;">※たまに着払いになっていることがあるので撮影前に要確認！</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. 撮影後の片付け・保管 -->
+    <!-- 8. 撮影後の片付け・保管 -->
     <section id="storage" class="card">
       <h2 class="card-title">📦 撮影後の片付け・仕分け・保管</h2>
 
@@ -587,14 +694,15 @@
       </div>
     </section>
 
-    <!-- 8. 最終チェックリスト -->
+    <!-- 9. 最終チェックリスト -->
     <section id="check" class="card">
       <h2 class="card-title">✅ 出品直前 最終チェックリスト</h2>
       <div class="checklist">
         <label><input type="checkbox"> 撮影端末：UQ 4Gのスマホを使っていないか</label>
         <label><input type="checkbox"> 配送料の負担は「送料込み」か（着払い厳禁）</label>
         <label><input type="checkbox"> 配送方法は「未定」、発送元「兵庫県」、日数「4〜7日」か</label>
-        <label><input type="checkbox"> 商品名の最後に「箱番号（例: 東さ6-0209①）」を入れたか</label>
+        <label><input type="checkbox"> 商品名に正しい「箱番号（例: 東さ6-0209①）」を入れたか</label>
+        <label><input type="checkbox"> 符牒のある商品の場合、商品名の最後に符牒を入れたか</label>
         <label><input type="checkbox"> 販売価格の桁間違いはないか（3,000円以下は出品不可）</label>
         <label><input type="checkbox"> 【厳禁】「象牙」の文字・写真はないか（極上に変換済か）</label>
         <label><input type="checkbox"> ☆付き商品：札の右端に縦で赤線を引き、裏面に書いたか</label>
