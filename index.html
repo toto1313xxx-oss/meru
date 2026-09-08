@@ -270,7 +270,7 @@
 <body>
 
   <header>
-    <h1>📱 メルカリ現場撮影・出品・保管 完全マニュアル</h1>
+    <h1>📱 メルカリ撮影・出品・保管 完全マニュアル</h1>
     <p>新人引き継ぎ用・現場オペレーション完全網羅版</p>
   </header>
 
@@ -313,7 +313,7 @@
       <h2 class="card-title">🏷️ 箱番号の付け方ルール <span class="badge badge-primary">完全解説</span></h2>
 
       <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 10px;">
-        箱番号は以下の<strong>4つの要素（店舗 ＋ 撮影者 ＋ 日付 ＋ 箱目）</strong>を組み合わせて付けます。
+        箱番号は以下の<strong>4つの要素（店舗 ＋ 撮影者 ＋ 日付 ＋ 箱目または☆）</strong>を組み合わせて付けます。
       </p>
 
       <div class="box-parts">
@@ -333,8 +333,8 @@
         </div>
         <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
         <div class="box-part-chip">
-          <span class="part-val">①</span>
-          <span class="part-lbl">④何箱目か</span>
+          <span class="part-val">① / ☆</span>
+          <span class="part-lbl">④何箱目か / 末尾☆</span>
         </div>
       </div>
 
@@ -350,15 +350,25 @@
         </div>
 
         <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
-          <strong>③ 日付・④ 箱目：</strong>撮影日（例：6-0209）＋ 何箱目か（①など）
+          <strong>③ 日付 ＆ ④ 末尾：</strong>撮影日（例：6-0209）＋ 箱目または☆
         </div>
+      </div>
+
+      <!-- ★ 新店商品の末尾☆ルール（強調枠） ★ -->
+      <div style="background: #fffbeb; border: 2.5px solid var(--warning); border-radius: 10px; padding: 14px; margin-top: 10px;">
+        <strong style="color: #92400e; font-size: 1rem; display: block; margin-bottom: 4px;">
+          ⭐ 【重要】新店商品の末尾は「☆」にする！
+        </strong>
+        <p style="font-size: 0.9rem; color: #78350f; line-height: 1.5;">
+          <strong>新店の商品は基本的にすべて「メルカリShops」に出品となり、店舗に展示中となるため、管理番号（箱番号）の末尾は必ず「☆」になります。</strong>
+        </p>
       </div>
 
       <div style="background: #eff6ff; border: 2px solid #93c5fd; border-radius: 10px; padding: 12px 16px; font-size: 0.95rem; margin-top: 8px;">
         <strong>💡 完成例：</strong><br>
-        ・東店・撮影者「さ」の場合 👉 <code>東さ6-0209①</code><br>
-        ・新店・撮影者「S」の場合 👉 <code>新S6-0209①</code><br>
-        ・アクセサリーの場合 👉 <code>東さ6-0209ア①</code>
+        ・<strong>東店（通常箱保管）：</strong><code>東さ6-0209①</code><br>
+        ・<strong>新店（Shops出品・展示中）：</strong><code>新S6-0209☆</code> <span style="color: var(--danger); font-weight: bold;">※末尾は☆！</span><br>
+        ・<strong>アクセサリー（東店）：</strong><code>東さ6-0209ア①</code>
       </div>
     </section>
 
@@ -384,9 +394,11 @@
           </div>
 
           <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
-            <strong>入力例（符牒あり）：</strong><br>
+            <strong>入力例（東店・符牒あり）：</strong><br>
             <code>古伊万里 染付 皿 2枚 東さ6-0209① タコサ</code><br>
-            <small style="color: #64748b;">※符牒のない商品は <code>古伊万里 染付 皿 2枚 東さ6-0209①</code> でOKです。</small>
+            <strong>入力例（新店・Shops展示・符牒あり）：</strong><br>
+            <code>古伊万里 染付 皿 2枚 新S6-0209☆ タコサ</code><br>
+            <small style="color: #64748b;">※符牒のない商品は末尾の符牒入力を省略してOKです。</small>
           </p>
         </div>
 
@@ -628,7 +640,7 @@
         </ul>
       </div>
 
-      <!-- 置物・彫刻（簡易版・トップは表情） -->
+      <!-- 置物・彫刻 -->
       <div class="genre-card">
         <div class="genre-title">
           <span>置物・彫刻</span>
@@ -700,6 +712,7 @@
         <label><input type="checkbox"> 配送料の負担は「送料込み」か（着払い厳禁）</label>
         <label><input type="checkbox"> 配送方法は「未定」、発送元「兵庫県」、日数「4〜7日」か</label>
         <label><input type="checkbox"> 商品名に正しい「箱番号（例: 東さ6-0209①）」を入れたか</label>
+        <label><input type="checkbox"> 新店商品の場合、管理番号（箱番号）の末尾を「☆」にしたか（例: 新S6-0209☆）</label>
         <label><input type="checkbox"> 符牒のある商品の場合、商品名の最後に符牒を入れたか</label>
         <label><input type="checkbox"> 販売価格の桁間違いはないか（3,000円以下は出品不可）</label>
         <label><input type="checkbox"> 【厳禁】「象牙」の文字・写真はないか（極上に変換済か）</label>
