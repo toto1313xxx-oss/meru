@@ -12,6 +12,8 @@
       --danger-soft: #fef2f2;
       --warning: #d97706;
       --warning-soft: #fffbeb;
+      --tea: #15803d;
+      --tea-soft: #f0fdf4;
       --dark: #0f172a;
       --text: #1e293b;
       --text-muted: #475569;
@@ -30,6 +32,7 @@
       padding-bottom: 100px;
     }
 
+    /* ヘッダー */
     header {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       color: #fff;
@@ -42,6 +45,7 @@
     header h1 { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
     header p { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
 
+    /* ナビゲーションタブ */
     .nav-tabs {
       display: flex;
       gap: 8px;
@@ -69,6 +73,7 @@
 
     .container { padding: 16px; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
 
+    /* カード */
     .card {
       background: var(--card-bg);
       border-radius: 16px;
@@ -88,6 +93,7 @@
     .badge { font-size: 0.78rem; padding: 4px 10px; border-radius: 14px; font-weight: 800; }
     .badge-primary { background: var(--primary-soft); color: var(--primary); }
     .badge-danger { background: var(--danger-soft); color: var(--danger); }
+    .badge-tea { background: var(--tea-soft); color: var(--tea); border: 1px solid #bbf7d0; }
 
     .banner-danger {
       background: var(--danger-soft);
@@ -113,6 +119,11 @@
       background: #fffbeb;
       border-left-color: var(--warning);
       color: #92400e;
+    }
+    .note-box.tea {
+      background: var(--tea-soft);
+      border-left-color: var(--tea);
+      color: #166534;
     }
 
     /* 商品札モック */
@@ -185,6 +196,44 @@
     }
     .box-part-chip span.part-val { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
     .box-part-chip span.part-lbl { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-top: 2px; }
+
+    /* 🍵 茶道具一覧グリッド */
+    .tea-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .tea-item-card {
+      background: #fff;
+      border: 2px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .tea-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .tea-item-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #166534;
+    }
+    .tea-item-ruby {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .tea-item-desc {
+      font-size: 0.82rem;
+      color: #334155;
+      line-height: 1.4;
+    }
 
     /* 撮影ステップ共通 */
     .step-grid {
@@ -279,6 +328,7 @@
     <a href="#box-name">🏷️ 箱番号の付け方</a>
     <a href="#listing">📝 出品設定（符牒ルール）</a>
     <a href="#tags">🏷️ 商品札（右端赤線）</a>
+    <a href="#tea-section">🍵 茶道具とは？一覧</a>
     <a href="#photo-base">📸 皿・茶碗の基本順序</a>
     <a href="#photo-sculpture">🗿 置物・彫刻の撮影</a>
     <a href="#damage">🔍 傷の表記基準</a>
@@ -465,7 +515,108 @@
       </div>
     </section>
 
-    <!-- 5. 基本撮影フロー（皿・茶碗・骨董） -->
+    <!-- ★★★ 5. 茶道具とは？（独立新設セクション） ★★★ -->
+    <section id="tea-section" class="card">
+      <h2 class="card-title">🍵 「茶道具」とは？（対象品目一覧 ＆ 取り扱い） <span class="badge badge-tea">完全明記</span></h2>
+
+      <div class="note-box tea" style="margin-top: 0;">
+        資料に記載されている<strong>「茶道具」に該当する9品目</strong>です。<br>
+        これらに該当する商品は、すべて<strong>「茶道具」として専用の保管・店頭戻しルール</strong>が適用されます。
+      </div>
+
+      <!-- 茶道具9品目の詳細グリッド -->
+      <div class="tea-items-grid">
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">茶碗</span>
+            <span class="tea-item-ruby">ちゃわん</span>
+          </div>
+          <span class="tea-item-desc">抹茶を点てて飲むための陶磁器の器。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">水指</span>
+            <span class="tea-item-ruby">みずさし</span>
+          </div>
+          <span class="tea-item-desc">茶道で釜に水を補給したり、茶碗をすすぐ水を蓄える蓋付きの器。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">建水</span>
+            <span class="tea-item-ruby">けんすい</span>
+          </div>
+          <span class="tea-item-desc">茶碗をすすいだあとの水を捨てるための器（こぼし）。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">香合</span>
+            <span class="tea-item-ruby">こうごう</span>
+          </div>
+          <span class="tea-item-desc">お香を入れておくための小さな手のひらサイズの蓋付き容器。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">棗</span>
+            <span class="tea-item-ruby">なつめ</span>
+          </div>
+          <span class="tea-item-desc">薄茶を入れる漆塗り・木製の抹茶入れ（ナツメの実の形）。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">掛花入れ</span>
+            <span class="tea-item-ruby">かけはないれ</span>
+          </div>
+          <span class="tea-item-desc">床の間の柱や壁に掛けて花を生けるための花器（竹製や陶器など）。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">茶杓</span>
+            <span class="tea-item-ruby">ちゃしゃく</span>
+          </div>
+          <span class="tea-item-desc">抹茶を容器からすくって茶碗に入れる竹製などの細長いさじ。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">茶入れ</span>
+            <span class="tea-item-ruby">ちゃいれ</span>
+          </div>
+          <span class="tea-item-desc">主に濃茶を入れるための小さな陶器製の小壺（仕覆・象牙蓋付きが多い）。</span>
+        </div>
+
+        <div class="tea-item-card">
+          <div class="tea-item-header">
+            <span class="tea-item-name">蓋置</span>
+            <span class="tea-item-ruby">ふたおき</span>
+          </div>
+          <span class="tea-item-desc">茶釜の蓋や柄杓（ひしゃく）を一時的に載せておく小さな台。</span>
+        </div>
+      </div>
+
+      <!-- 茶道具の2大取り扱いルール -->
+      <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="background: #fff; border: 2px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 0.9rem;">
+          <strong style="color: var(--primary);">📦 【保管】箱単位のお茶道具ルール：</strong><br>
+          ・☆洋3と同じように<strong>「☆茶3」</strong>として、3Fへ箱ごとに保管する。<br>
+          ・箱に蓋をして、<strong>箱本体と蓋の両方に箱番号（例：☆茶3 東さ6-0209）を記載</strong>すること。<br>
+          ・蓋で密閉されるため、傷まないよう<strong>プチプチを多めに入れて保護</strong>する。
+        </div>
+
+        <div style="background: #fff; border: 2px solid var(--danger); border-radius: 10px; padding: 12px 14px; font-size: 0.9rem;">
+          <strong style="color: var(--danger);">🏷️ 【店頭展示】☆マーク付き商品（札に「☆茶」記載）の場合：</strong><br>
+          ・商品札の裏面に <strong><code>☆2F</code></strong> と記入する。<br>
+          ・撮影後、<strong>2Fの「茶道具コーナー」に飾る</strong>。
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 基本撮影フロー（皿・茶碗・骨董） -->
     <section id="photo-base" class="card">
       <h2 class="card-title">📸 基本撮影フロー（皿・茶碗・骨董） <span class="badge badge-primary">全商品の基本</span></h2>
 
@@ -502,7 +653,7 @@
       </div>
     </section>
 
-    <!-- ★★★ 6. 置物・彫刻の撮影マニュアル（新設・完全網羅） ★★★ -->
+    <!-- 7. 置物・彫刻の撮影マニュアル -->
     <section id="photo-sculpture" class="card">
       <h2 class="card-title">🗿 置物・彫刻の撮影マニュアル <span class="badge badge-danger">表情＆重さ計量必須</span></h2>
 
@@ -539,14 +690,10 @@
       <!-- 計量図解SVG -->
       <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px;">
         <svg viewBox="0 0 340 100" style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto;">
-          <!-- 秤の本体 -->
           <rect x="70" y="55" width="200" height="35" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-          <!-- 秤のディスプレイ -->
           <rect x="130" y="65" width="80" height="20" rx="3" fill="#0f172a"/>
           <text x="170" y="79" font-family="monospace" font-size="12" font-weight="bold" fill="#22c55e" text-anchor="middle">1,245 g</text>
-          <!-- 置物（ブロンズ像風） -->
           <path d="M150,55 C145,35 155,20 170,15 C185,20 195,35 190,55 Z" fill="#b45309" stroke="#78350f" stroke-width="2"/>
-          <!-- カメラ矢印 -->
           <path d="M285,40 L250,55 M255,46 L250,55 L260,57" stroke="#dc2626" stroke-width="2" fill="none"/>
           <text x="290" y="35" font-size="10" font-weight="bold" fill="#dc2626">秤の数値を撮影！</text>
         </svg>
@@ -561,7 +708,7 @@
       </div>
     </section>
 
-    <!-- 7. 傷の状態と記載基準 -->
+    <!-- 8. 傷の状態と記載基準 -->
     <section id="damage" class="card">
       <h2 class="card-title">🔍 傷の状態・説明欄の表記・状態ステータス基準</h2>
 
@@ -603,7 +750,7 @@
       </div>
     </section>
 
-    <!-- 8. ジャンル別 撮影ルール（大皿・組皿・アクセ・洋食器） -->
+    <!-- 9. ジャンル別 撮影ルール（大皿・組皿・アクセ・洋食器） -->
     <section id="photo-genres" class="card">
       <h2 class="card-title">🎨 ジャンル別の撮影ルール・図解</h2>
 
@@ -622,7 +769,6 @@
 
         <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px;">
           <svg viewBox="0 0 340 125" style="width: 100%; max-width: 450px; height: auto; display: block; margin: 0 auto;">
-            <!-- 4分割（左） -->
             <g transform="translate(20, 5)">
               <circle cx="55" cy="50" r="45" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5"/>
               <line x1="55" y1="5" x2="55" y2="95" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
@@ -633,7 +779,6 @@
               <text x="75" y="72" font-size="9" font-weight="bold" fill="#dc2626">右下</text>
               <text x="55" y="115" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">正面：4分割アップ</text>
             </g>
-            <!-- 裏面3箇所（右） -->
             <g transform="translate(190, 5)">
               <circle cx="55" cy="50" r="45" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
               <circle cx="55" cy="50" r="20" fill="#fff" stroke="#dc2626" stroke-width="2"/>
@@ -692,7 +837,7 @@
       </div>
     </section>
 
-    <!-- 9. 撮影後の片付け・保管 -->
+    <!-- 10. 撮影後の片付け・保管 -->
     <section id="storage" class="card">
       <h2 class="card-title">📦 撮影後の片付け・仕分け・保管</h2>
 
@@ -715,10 +860,10 @@
         <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 12px; background: #fff;">
           <strong style="font-size: 0.92rem;">📦 箱単位の洋食器 ＆ お茶道具</strong>
           <p style="font-size: 0.85rem; margin-top: 3px;">
-            例）<code>☆洋3 東さ6-0209</code> / <code>☆茶3</code><br>
+            洋食器 例）<code>☆洋3 東さ6-0209</code> ／ 茶道具 例）<code>☆茶3 東さ6-0209</code><br>
             <strong>箱に蓋をして、箱本体・蓋の両方に箱番号を書いて3Fへ。</strong><br>
             ※プチプチを多めに入れて保護すること。<br>
-            <small style="color: var(--text-muted);">（茶道具：茶碗、水指、建水、香合、棗、掛花入れ、茶杓、茶入れ、蓋置）</small>
+            <small style="color: var(--tea); font-weight: bold;">※茶道具：茶碗、水指、建水、香合、棗、掛花入れ、茶杓、茶入れ、蓋置（上の「茶道具とは？」参照）</small>
           </p>
         </div>
 
@@ -732,7 +877,7 @@
       </div>
     </section>
 
-    <!-- 10. 最終チェックリスト -->
+    <!-- 11. 最終チェックリスト -->
     <section id="check" class="card">
       <h2 class="card-title">✅ 出品直前 最終チェックリスト</h2>
       <div class="checklist">
@@ -743,6 +888,7 @@
         <label><input type="checkbox"> 符牒のある商品の場合、商品名の最後に符牒を入れたか</label>
         <label><input type="checkbox"> 販売価格の桁間違いはないか（3,000円以下は出品不可）</label>
         <label><input type="checkbox"> 【厳禁】「象牙」の文字・写真はないか（極上に変換済か）</label>
+        <label><input type="checkbox"> 茶道具（☆茶）：☆付きなら裏面に「☆2F」と書き2F茶道具コーナーへ、箱保管なら「☆茶3」で3Fへ</label>
         <label><input type="checkbox"> 置物・彫刻：仏像等の顔の表情をアップで撮ったか</label>
         <label><input type="checkbox"> 置物・彫刻：石・象牙（極上）・銅・銀・ブロンズ製品の「重さ」を秤で計って撮影したか</label>
         <label><input type="checkbox"> ☆付き商品：札の右端に縦で赤線を引き、裏面に書いたか</label>
