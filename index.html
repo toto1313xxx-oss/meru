@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メルカリ撮影・出品 業務マニュアル</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --gray-bg: #f8fafc;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-sub: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background-color: var(--gray-bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 { font-size: 1.1rem; font-weight: 700; }
+    header p { font-size: 0.75rem; color: var(--text-sub); }
+
+    /* クイックナビ */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .nav-tabs a {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--gray-bg);
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+    }
+    .nav-tabs a:active { background: var(--primary-light); color: var(--primary); }
+
+    .container { padding: 16px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+    /* カードUI */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 警告・注意バナー */
+    .alert-danger {
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .alert-danger strong { color: var(--danger); display: block; font-size: 0.9rem; margin-bottom: 4px; }
+    .alert-danger p { font-size: 0.8rem; color: #7f1d1d; }
+
+    /* 仕分け・フローチャートカード */
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .step-box {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+    .step-box.highlight {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .step-box.alert {
+      border-color: var(--warning);
+      background: var(--warning-light);
+    }
+    .step-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+    .step-desc { font-size: 0.8rem; color: var(--text-sub); }
+
+    /* 札の図解ビジュアル */
+    .tag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tag-mock {
+      border: 1.5px dashed #94a3b8;
+      border-radius: 6px;
+      padding: 10px;
+      background: #fff;
+      position: relative;
+      font-size: 0.75rem;
+      min-height: 110px;
+    }
+    .tag-mock.star::after {
+      content: "★";
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      color: var(--warning);
+      font-size: 1rem;
+    }
+    .tag-mock .red-line {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      right: 6px;
+      height: 3px;
+      background: var(--danger);
+    }
+    .tag-caption {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* アコーディオン・テーブル */
+    details {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+    details summary {
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    details[open] summary { margin-bottom: 8px; }
+    details p, details ul { font-size: 0.8rem; color: var(--text-sub); padding-left: 16px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      margin-top: 8px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 6px;
+      text-align: left;
+    }
+    th { background: var(--gray-bg); font-weight: 600; }
+
+    /* チェックリスト */
+    .checklist label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .checklist input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>メルカリ撮影・出品マニュアル</h1>
+    <p>現場作業用クイックリファレンス</p>
+  </header>
+
+  <nav class="nav-tabs">
+    <a href="#rules">⚠️ 厳禁・ルール</a>
+    <a href="#destination">📦 保管・仕分け</a>
+    <a href="#tags">🏷️ 札の書き方</a>
+    <a href="#camera">📸 撮影手順</a>
+    <a href="#check">✅ 出品前チェック</a>
+  </nav>
+
+  <main class="container">
+
+    <!-- 1. 厳禁・注意事項 -->
+    <section id="rules" class="card">
+      <h2 class="card-title">⚠️ 出品前の厳禁・確認ルール</h2>
+      
+      <div class="alert-danger">
+        <strong>【超重要】象牙はメルカリ禁止！</strong>
+        <p>商品名・説明文で「象牙」は絶対NG。必ず<strong>「極上」</strong>に変換する。<br>写真内（木箱の文字や札）の写り込みも厳禁！</p>
+      </div>
+
+      <div class="step-box alert">
+        <p class="step-title">出品ストップ基準</p>
+        <p class="step-desc">
+          ・<strong>3,000円以下</strong>：原則出品しない<br>
+          ・<strong>6,000円以上で符帳なし</strong>：社長に確認<br>
+          ・<strong>UQ 4Gのスマホ</strong>：撮影に使用しない
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. 保管先・仕分けフロー -->
+    <section id="destination" class="card">
+      <h2 class="card-title">📦 撮影後の行き先仕分け</h2>
+      
+      <div class="flow-step">
+        <div class="step-box highlight">
+          <p class="step-title">⚡ 撮影後すぐに売れた！</p>
+          <p class="step-desc">👉 <strong>「札待ちコーナー（1F / 3F）」</strong>へ置く<br><small>※発送伝票・札が準備できるまでの待機場所</small></p>
+        </div>
+
+        <div class="step-box">
+          <p class="step-title">💍 アクセサリー</p>
+          <p class="step-desc">👉 <strong>1F 撮影台の足元にある箱</strong>へ</p>
+        </div>
+
+        <div class="step-box">
+          <p class="step-title">🍽️ 箱単位の洋食器・茶道具</p>
+          <p class="step-desc">👉 <strong>プチプチ多め</strong>で蓋をし、箱と蓋の両方に番号を書いて<strong>3Fへ</strong></p>
+        </div>
+
+        <div class="step-box">
+          <p class="step-title">🏺 通常商品</p>
+          <p class="step-desc">👉 サイズ感を揃えて箱に入れ、箱番号を貼って<strong>3Fへ</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 札の書き方図解 -->
+    <section id="tags" class="card">
+      <h2 class="card-title">🏷️ 商品札の書き分けルール</h2>
+      <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 8px;">札の右上に「☆」があるかどうかで記入方法が逆になります。</p>
+
+      <div class="tag-grid">
+        <div>
+          <div class="tag-mock">
+            古伊万里 皿 2枚<br>¥5,000<br><br>
+            <strong style="color: var(--primary);">直径10cm 欠けあり<br>東さ6-0209①</strong>
+          </div>
+          <p class="tag-caption">通常（3F行き）<br><strong>表面に直接書く</strong></p>
+        </div>
+
+        <div>
+          <div class="tag-mock star">
+            古伊万里 皿 2枚<br>¥5,000<br><br>
+            <span style="color: var(--danger); font-size: 0.65rem;">※表面は文字記入NG！</span>
+            <div class="red-line"></div>
+          </div>
+          <p class="tag-caption">☆あり（店内戻し）<br><strong>赤線を引き、裏面に書く</strong></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 12px; font-size: 0.75rem; background: var(--gray-bg); padding: 8px; border-radius: 6px;">
+        <strong>裏面の記入例（☆付き商品）：</strong><br>
+        ・1F展示戻し → <code>東さ6-0209☆1F</code><br>
+        ・2F展示戻し → <code>東さ6-0209☆2F</code><br>
+        ・札に「☆げ」 → <code>☆2F</code>（2F象牙コーナー）<br>
+        ・札に「☆茶」 → <code>☆2F</code>（2F茶道具コーナー）
+      </div>
+    </section>
+
+    <!-- 4. ジャンル別 撮影のツボ -->
+    <section id="camera" class="card">
+      <h2 class="card-title">📸 ジャンル別 撮影・計測</h2>
+
+      <details>
+        <summary>皿・茶碗・骨董</summary>
+        <p><strong>1枚目（トップ）：</strong>木箱や布の押印があれば必ず一緒に写す。</p>
+        <p><strong>順番：</strong>正面 → 側面 → 反対側面 → 真上 → 背面 → 底面 → 高さ → 幅（口径） → 傷 → 木箱</p>
+        <p><strong>組皿（5枚〜）：</strong>1枚だけ裏面を向けてトップ撮影。</p>
+      </details>
+
+      <details>
+        <summary>洋食器</summary>
+        <p>金彩剥がれ、ニュー、欠け、取っ手直しを念入りにチェック。</p>
+        <p>多少のスレは写真掲載の上「少々使用感あります」と記載。C&Sは揃って1客。</p>
+      </details>
+
+      <details>
+        <summary>アクセサリー・置物</summary>
+        <p><strong>アクセサリー：</strong>K18やSILVER刻印は接写。金プラチナは小数点計量。</p>
+        <p><strong>置物・彫刻：</strong>仏像は表情重視。石・極上（象牙）・銅・銀・ブロンズは<strong>必ず重さを計る</strong>。</p>
+        <p><strong>真珠・ウラングラス：</strong>ブラックライト照射（ウラングラスは発光写真をトップに）。</p>
+      </details>
+
+      <div style="margin-top: 10px;">
+        <p style="font-size: 0.8rem; font-weight: 700;">状態ステータス基準</p>
+        <table>
+          <tr><th>傷の大きさ</th><th>説明文</th><th>メルカリ状態</th></tr>
+          <tr><td>〜1mm</td><td>ごく小さな傷</td><td>目立った傷なし / やや傷</td></tr>
+          <tr><td>〜2mm前後</td><td>小傷</td><td>やや傷や汚れあり</td></tr>
+          <tr><td>目立つ欠け/修復</td><td>傷 / 直し</td><td>傷や汚れあり</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. 出品前チェックリスト -->
+    <section id="check" class="card">
+      <h2 class="card-title">✅ 出品前 最終チェック</h2>
+      <div class="checklist">
+        <label><input type="checkbox"> 配送料の負担は「送料込み」になっているか</label>
+        <label><input type="checkbox"> 配送方法は「未定」になっているか</label>
+        <label><input type="checkbox"> 発送元の地域は「兵庫県」になっているか</label>
+        <label><input type="checkbox"> 発送までの日数は「4〜7日」になっているか</label>
+        <label><input type="checkbox"> 商品名に「箱番号（例: 東さ6-0209①）」を入れたか</label>
+        <label><input type="checkbox"> 販売価格の桁間違いはないか</label>
+        <label><input type="checkbox"> 象牙製品に「象牙」の文字・写真が入っていないか</label>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
