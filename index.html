@@ -114,7 +114,7 @@
       color: #92400e;
     }
 
-    /* 🏷️ 商品札の完全図解モック（右端に縦の赤線） */
+    /* 🏷️ 商品札の完全図解モック（右端に縦の赤線 ＆ 横書き注意書き） */
     .tag-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -125,7 +125,7 @@
       background: #fffdf9;
       border: 2px dashed #94a3b8;
       border-radius: 8px;
-      padding: 12px 14px 12px 10px;
+      padding: 12px 10px;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -137,20 +137,6 @@
     .tag-card.has-red-line {
       border-right: 6px solid var(--danger);
     }
-    .red-line-label {
-      position: absolute;
-      right: -2px;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-size: 0.62rem;
-      font-weight: 800;
-      color: var(--danger);
-      background: #fff;
-      padding: 1px 4px;
-      border: 1px solid var(--danger);
-      border-radius: 4px;
-      white-space: nowrap;
-    }
     .tag-star-icon {
       position: absolute;
       top: 6px;
@@ -158,6 +144,18 @@
       color: var(--warning);
       font-size: 1.3rem;
       line-height: 1;
+    }
+    /* 横書きの赤線案内ラベル */
+    .red-line-note {
+      background: #fee2e2;
+      color: var(--danger);
+      border: 1px solid #fca5a5;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 4px 6px;
+      border-radius: 4px;
+      text-align: right;
+      margin-bottom: 6px;
     }
     .tag-caption {
       font-size: 0.8rem;
@@ -287,18 +285,24 @@
         <!-- ☆付き商品（店内戻し） -->
         <div>
           <div class="tag-card has-red-line">
-            <span class="red-line-label">右端に縦赤線！</span>
-            <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
               <div style="font-size: 0.78rem; font-weight: 800; color: #1e293b;">
                 古伊万里 皿 2枚<br>
                 ¥5,000
               </div>
               <span class="tag-star-icon">★</span>
             </div>
-            <div style="background: #fef2f2; border: 1px dashed var(--danger); padding: 6px; border-radius: 4px; font-size: 0.68rem; color: #991b1b; font-weight: 800;">
-              ✍️ 表面は記入しない！<br>
-              <strong>裏面に記入する：</strong><br>
-              東さ6-0209☆1F
+
+            <div>
+              <!-- 横書きの注意書き -->
+              <div class="red-line-note">
+                👉 右端に縦で赤線を入れる
+              </div>
+              <div style="background: #fef2f2; border: 1px dashed var(--danger); padding: 6px; border-radius: 4px; font-size: 0.68rem; color: #991b1b; font-weight: 800;">
+                ✍️ 表面は記入しない！<br>
+                <strong>裏面に記入する：</strong><br>
+                東さ6-0209☆1F
+              </div>
             </div>
           </div>
           <p class="tag-caption">☆付き商品（店内戻し）<br><span style="color: var(--danger);">【右端縦赤線】＋【裏面記入】</span></p>
@@ -373,7 +377,7 @@
       </div>
     </section>
 
-    <!-- 4. 傷の状態と記載基準（シンプル基準表） -->
+    <!-- 4. 傷の状態と記載基準 -->
     <section id="damage" class="card">
       <h2 class="card-title">🔍 傷の状態・説明欄の表記・状態ステータス基準</h2>
 
