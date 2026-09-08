@@ -30,7 +30,6 @@
       padding-bottom: 100px;
     }
 
-    /* ヘッダー */
     header {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       color: #fff;
@@ -43,7 +42,6 @@
     header h1 { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
     header p { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
 
-    /* ナビゲーションタブ */
     .nav-tabs {
       display: flex;
       gap: 8px;
@@ -71,7 +69,6 @@
 
     .container { padding: 16px; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
 
-    /* カード */
     .card {
       background: var(--card-bg);
       border-radius: 16px;
@@ -92,7 +89,6 @@
     .badge-primary { background: var(--primary-soft); color: var(--primary); }
     .badge-danger { background: var(--danger-soft); color: var(--danger); }
 
-    /* 警告バナー */
     .banner-danger {
       background: var(--danger-soft);
       border: 2.5px solid var(--danger);
@@ -103,7 +99,6 @@
     .banner-danger strong { color: var(--danger); font-size: 1.05rem; display: block; margin-bottom: 6px; }
     .banner-danger p { font-size: 0.92rem; color: #991b1b; line-height: 1.5; font-weight: 600; }
 
-    /* 注記ボックス */
     .note-box {
       background: #f8fafc;
       border-left: 5px solid var(--primary);
@@ -119,13 +114,8 @@
       border-left-color: var(--warning);
       color: #92400e;
     }
-    .note-box.danger {
-      background: #fef2f2;
-      border-left-color: var(--danger);
-      color: #991b1b;
-    }
 
-    /* 🏷️ 商品札モック（右端縦赤線） */
+    /* 商品札モック */
     .tag-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -173,13 +163,7 @@
       margin-top: 8px;
     }
 
-    /* 箱番号フォーマット分解図 */
-    .box-rule-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 12px 0;
-    }
+    /* 箱番号フォーマット */
     .box-parts {
       display: flex;
       flex-wrap: wrap;
@@ -202,7 +186,7 @@
     .box-part-chip span.part-val { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
     .box-part-chip span.part-lbl { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-top: 2px; }
 
-    /* 撮影ステップ */
+    /* 撮影ステップ共通 */
     .step-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -223,6 +207,11 @@
     .step-cell.highlight {
       border-color: var(--primary);
       background: var(--primary-soft);
+      grid-column: span 2;
+    }
+    .step-cell.alert-highlight {
+      border-color: var(--danger);
+      background: var(--danger-soft);
       grid-column: span 2;
     }
     .step-badge {
@@ -256,12 +245,10 @@
       align-items: center;
     }
 
-    /* テーブル */
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 10px; }
     th, td { border: 1.5px solid var(--border); padding: 10px 8px; text-align: left; }
     th { background: #f1f5f9; font-weight: 800; color: var(--dark); }
 
-    /* チェックリスト */
     .checklist label {
       display: flex;
       align-items: center;
@@ -292,7 +279,8 @@
     <a href="#box-name">🏷️ 箱番号の付け方</a>
     <a href="#listing">📝 出品設定（符牒ルール）</a>
     <a href="#tags">🏷️ 商品札（右端赤線）</a>
-    <a href="#photo-base">📸 基本撮影フロー</a>
+    <a href="#photo-base">📸 皿・茶碗の基本順序</a>
+    <a href="#photo-sculpture">🗿 置物・彫刻の撮影</a>
     <a href="#damage">🔍 傷の表記基準</a>
     <a href="#photo-genres">🎨 大皿・アクセ・洋食器</a>
     <a href="#storage">📦 保管・仕分け</a>
@@ -321,7 +309,7 @@
       </div>
     </section>
 
-    <!-- 2. 箱番号の付け方（店舗別・命名規則） -->
+    <!-- 2. 箱番号の付け方 -->
     <section id="box-name" class="card">
       <h2 class="card-title">🏷️ 箱番号の付け方ルール <span class="badge badge-primary">完全解説</span></h2>
 
@@ -329,52 +317,49 @@
         箱番号は以下の<strong>4つの要素（店舗 ＋ 撮影者 ＋ 日付 ＋ 箱目）</strong>を組み合わせて付けます。
       </p>
 
-      <div class="box-rule-container">
-        <!-- 分解チップ -->
-        <div class="box-parts">
-          <div class="box-part-chip">
-            <span class="part-val">東 / 新</span>
-            <span class="part-lbl">①保管展示店舗</span>
-          </div>
-          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
-          <div class="box-part-chip">
-            <span class="part-val">さ / S</span>
-            <span class="part-lbl">②撮影者名1文字</span>
-          </div>
-          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
-          <div class="box-part-chip">
-            <span class="part-val">6-0209</span>
-            <span class="part-lbl">③撮影日</span>
-          </div>
-          <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
-          <div class="box-part-chip">
-            <span class="part-val">①</span>
-            <span class="part-lbl">④何箱目か</span>
-          </div>
+      <div class="box-parts">
+        <div class="box-part-chip">
+          <span class="part-val">東 / 新</span>
+          <span class="part-lbl">①保管展示店舗</span>
+        </div>
+        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+        <div class="box-part-chip">
+          <span class="part-val">さ / S</span>
+          <span class="part-lbl">②撮影者名1文字</span>
+        </div>
+        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+        <div class="box-part-chip">
+          <span class="part-val">6-0209</span>
+          <span class="part-lbl">③撮影日</span>
+        </div>
+        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-muted);">＋</span>
+        <div class="box-part-chip">
+          <span class="part-val">①</span>
+          <span class="part-lbl">④何箱目か</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+        <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+          <strong>① 保管展示店舗：</strong><br>
+          ・東店で保管展示しているもの 👉 <strong>「東」</strong><br>
+          ・新店で保管展示しているもの 👉 <strong>「新」</strong>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
-            <strong>① 保管展示店舗：</strong><br>
-            ・東店で保管展示しているもの 👉 <strong>「東」</strong><br>
-            ・新店で保管展示しているもの 👉 <strong>「新」</strong>
-          </div>
-
-          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
-            <strong>② 撮影者名：</strong>撮影者の名前一文字（ひらがな「さ」や、アルファベット「S」など）
-          </div>
-
-          <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
-            <strong>③ 日付・④ 箱目：</strong>撮影日（例：6-0209）＋ 何箱目か（①など）
-          </div>
+        <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+          <strong>② 撮影者名：</strong>撮影者の名前一文字（ひらがな「さ」や、アルファベット「S」など）
         </div>
 
-        <div style="background: #eff6ff; border: 2px solid #93c5fd; border-radius: 10px; padding: 12px 16px; font-size: 0.95rem; margin-top: 4px;">
-          <strong>💡 完成例：</strong><br>
-          ・東店・撮影者「さ」の場合 👉 <code>東さ6-0209①</code><br>
-          ・新店・撮影者「S」の場合 👉 <code>新S6-0209①</code><br>
-          ・アクセサリーの場合 👉 <code>東さ6-0209ア①</code>
+        <div style="background: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem;">
+          <strong>③ 日付・④ 箱目：</strong>撮影日（例：6-0209）＋ 何箱目か（①など）
         </div>
+      </div>
+
+      <div style="background: #eff6ff; border: 2px solid #93c5fd; border-radius: 10px; padding: 12px 16px; font-size: 0.95rem; margin-top: 8px;">
+        <strong>💡 完成例：</strong><br>
+        ・東店・撮影者「さ」の場合 👉 <code>東さ6-0209①</code><br>
+        ・新店・撮影者「S」の場合 👉 <code>新S6-0209①</code><br>
+        ・アクセサリーの場合 👉 <code>東さ6-0209ア①</code>
       </div>
     </section>
 
@@ -383,8 +368,6 @@
       <h2 class="card-title">📝 出品設定 ＆ 符牒の入力ルール <span class="badge badge-danger">最重要</span></h2>
 
       <div style="display: flex; flex-direction: column; gap: 12px;">
-
-        <!-- 符牒ルールバナー -->
         <div style="background: #fff5f5; border: 2.5px solid var(--danger); border-radius: 10px; padding: 14px;">
           <strong style="color: var(--danger); font-size: 1rem; display: block; margin-bottom: 4px;">
             🚨 【重要】商品名の最後に「符牒」を忘れないこと！
@@ -394,7 +377,6 @@
           </p>
         </div>
 
-        <!-- 商品名フォーマット -->
         <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
           <strong style="font-size: 0.95rem; color: var(--primary);">③ 商品名フォーマット</strong>
           
@@ -409,7 +391,6 @@
           </p>
         </div>
 
-        <!-- 配送設定 -->
         <div style="border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; background: #fff;">
           <strong style="font-size: 0.95rem; color: var(--danger);">⑥ 配送設定（撮影前に必ず確認！）</strong>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem; margin-top: 6px;">
@@ -521,7 +502,66 @@
       </div>
     </section>
 
-    <!-- 6. 傷の状態と記載基準 -->
+    <!-- ★★★ 6. 置物・彫刻の撮影マニュアル（新設・完全網羅） ★★★ -->
+    <section id="photo-sculpture" class="card">
+      <h2 class="card-title">🗿 置物・彫刻の撮影マニュアル <span class="badge badge-danger">表情＆重さ計量必須</span></h2>
+
+      <div class="note-box warn" style="margin-top: 0; margin-bottom: 12px;">
+        <strong>基本的には皿・茶碗等と同じ手順</strong>で撮影します。その上で、以下の**「顔の表情」「素材別の重さ計量」「象牙の厳禁ルール」**を必ず実行してください。
+      </div>
+
+      <div class="step-grid">
+        <div class="step-cell highlight">
+          <span class="step-badge red">1枚目 (トップ)</span>
+          <span>全体の佇まいが最もよくわかる写真（木箱・台座があれば一緒に写す）</span>
+        </div>
+        <div class="step-cell alert-highlight">
+          <span class="step-badge red">2枚目 (重要)</span>
+          <span>正面アップ：<strong>仏像やブロンズは「顔の表情」がはっきりわかるように撮影！</strong></span>
+        </div>
+        <div class="step-cell"><span class="step-badge">3</span> 右側面（全体のフォルム）</div>
+        <div class="step-cell"><span class="step-badge">4</span> 左側面（全体のフォルム）</div>
+        <div class="step-cell"><span class="step-badge">5</span> 背面（後ろ姿、衣のドレープ、造形）</div>
+        <div class="step-cell"><span class="step-badge">6</span> 真上からのアングル</div>
+        <div class="step-cell highlight">
+          <span class="step-badge">7</span>
+          <span>底面（裏面）：銘・在銘・刻印・削り痕・状態の確認</span>
+        </div>
+        <div class="step-cell alert-highlight">
+          <span class="step-badge red">8枚目 (必須)</span>
+          <span><strong>【重量計量】デジタル秤に乗せた数値を撮影！</strong><br>
+          <small style="color: #991b1b;">対象：石、象牙（極上）、銅、銀、ブロンズ製品</small></span>
+        </div>
+        <div class="step-cell"><span class="step-badge">9</span> サイズ計測（メジャー・定規を当てて高さ・幅・奥行き）</div>
+        <div class="step-cell"><span class="step-badge">10〜</span> 傷、欠け、スレ、直しのアップ ＋ 共箱（木箱・紐掛け）</div>
+      </div>
+
+      <!-- 計量図解SVG -->
+      <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px;">
+        <svg viewBox="0 0 340 100" style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto;">
+          <!-- 秤の本体 -->
+          <rect x="70" y="55" width="200" height="35" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+          <!-- 秤のディスプレイ -->
+          <rect x="130" y="65" width="80" height="20" rx="3" fill="#0f172a"/>
+          <text x="170" y="79" font-family="monospace" font-size="12" font-weight="bold" fill="#22c55e" text-anchor="middle">1,245 g</text>
+          <!-- 置物（ブロンズ像風） -->
+          <path d="M150,55 C145,35 155,20 170,15 C185,20 195,35 190,55 Z" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+          <!-- カメラ矢印 -->
+          <path d="M285,40 L250,55 M255,46 L250,55 L260,57" stroke="#dc2626" stroke-width="2" fill="none"/>
+          <text x="290" y="35" font-size="10" font-weight="bold" fill="#dc2626">秤の数値を撮影！</text>
+        </svg>
+      </div>
+
+      <div class="banner-danger" style="margin-top: 12px; margin-bottom: 0;">
+        <strong>🚫 【超重要】置物・彫刻での象牙ルール</strong>
+        <p>
+          ・置物や彫刻に多い「象牙製品」は、メルカリ禁止のため<strong>絶対に「象牙」と記載せず「極上」に変換</strong>すること！<br>
+          ・木箱の墨書き（例：象牙置物、象牙彫刻等）や商品札の文字も<strong>写真に写り込まないよう絶対に画角から外すこと</strong>！
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. 傷の状態と記載基準 -->
     <section id="damage" class="card">
       <h2 class="card-title">🔍 傷の状態・説明欄の表記・状態ステータス基準</h2>
 
@@ -563,7 +603,7 @@
       </div>
     </section>
 
-    <!-- 7. ジャンル別 撮影ルール -->
+    <!-- 8. ジャンル別 撮影ルール（大皿・組皿・アクセ・洋食器） -->
     <section id="photo-genres" class="card">
       <h2 class="card-title">🎨 ジャンル別の撮影ルール・図解</h2>
 
@@ -642,19 +682,17 @@
         </ul>
       </div>
 
-      <!-- アクセサリー・置物・特殊品 -->
+      <!-- アクセサリー・特殊品 -->
       <div class="genre-card">
-        <div class="genre-title"><span>アクセサリー・置物・特殊品</span></div>
+        <div class="genre-title"><span>アクセサリー・特殊品</span></div>
         <ul style="font-size: 0.9rem; padding-left: 20px; line-height: 1.6;">
           <li><strong>アクセサリー：</strong>メインを決めてトップ撮影。K18・SILVER刻印は接写。価値のあるもの（金やプラチナ）は小数点単位まで計れる計りで計量。べっ甲は虫食いに注意。</li>
-          <li><strong>置物・彫刻：</strong>仏像やブロンズは顔の表情がわかるように撮影。</li>
-          <li><strong style="color: var(--primary);">重量計量必須：石、象牙（極上）、銅、銀、ブロンズ製品は必ず重さを計る。</strong></li>
           <li><strong>本真珠・ウラングラス：</strong>ブラックライトを当てて撮影。<strong style="color: var(--danger);">ウラングラスは発光写真を必ずトップ画面にする！</strong></li>
         </ul>
       </div>
     </section>
 
-    <!-- 8. 撮影後の片付け・保管 -->
+    <!-- 9. 撮影後の片付け・保管 -->
     <section id="storage" class="card">
       <h2 class="card-title">📦 撮影後の片付け・仕分け・保管</h2>
 
@@ -694,7 +732,7 @@
       </div>
     </section>
 
-    <!-- 9. 最終チェックリスト -->
+    <!-- 10. 最終チェックリスト -->
     <section id="check" class="card">
       <h2 class="card-title">✅ 出品直前 最終チェックリスト</h2>
       <div class="checklist">
@@ -705,6 +743,8 @@
         <label><input type="checkbox"> 符牒のある商品の場合、商品名の最後に符牒を入れたか</label>
         <label><input type="checkbox"> 販売価格の桁間違いはないか（3,000円以下は出品不可）</label>
         <label><input type="checkbox"> 【厳禁】「象牙」の文字・写真はないか（極上に変換済か）</label>
+        <label><input type="checkbox"> 置物・彫刻：仏像等の顔の表情をアップで撮ったか</label>
+        <label><input type="checkbox"> 置物・彫刻：石・象牙（極上）・銅・銀・ブロンズ製品の「重さ」を秤で計って撮影したか</label>
         <label><input type="checkbox"> ☆付き商品：札の右端に縦で赤線を引き、裏面に書いたか</label>
         <label><input type="checkbox"> 大皿：皿立て使用、4分割、裏面3ヶ所の側面を撮ったか</label>
         <label><input type="checkbox"> 5枚以上の組皿：1枚裏返しでトップ撮影したか</label>
